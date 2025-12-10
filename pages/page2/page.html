@@ -1,0 +1,641 @@
+<section>
+  <h2>Тема, Мета, Місце розташування сайту, звіту</h2>
+
+  <p><strong>Тема:</strong> «Каскадні таблиці стилів. Селектори, ідентифікатори. Стильове оформлення текстових елементів в HTML-документах.»</p>
+
+  <p><strong>Мета:</strong> Набути практичних навичок роботи з каскадними таблицями стилів (CSS), опанувати різні типи селекторів — тегу, класу, ідентифікатора, атрибутні та комбіновані; навчитися оформлювати текстові елементи, таблиці, списки, фони й контури в HTML-документах. Ознайомитися з принципами каскадування та спадкування стилів.</p>
+
+  <h4>Посилання на виконані завдання</h4>
+  <ul>
+    <li>Репозиторій власного веб-застосунку (GitHub):
+      <a href="https://github.com/Somnovem/IO-35_appWEB-ZhmuraArtem-FIOT-2025" target="_blank" rel="noopener">
+        посилання
+      </a>
+    </li>
+    <li>Власний веб-застосунок (Жива сторінка):
+      <a href="https://somnovem.github.io/IO-35_appWEB-ZhmuraArtem-FIOT-2025/" target="_blank" rel="noopener">
+        посилання
+      </a>
+    </li>
+    <li>Репозиторій звітного HTML-документа (GitHub): 
+      <a href="https://github.com/Somnovem/IO-35_appRECORD-ZhmuraArtem-FIOT-2025" target="_blank" rel="noopener">
+        посилання
+      </a>
+    </li>
+    <li>Звітний HTML-документ (Жива сторінка): 
+      <a href="https://somnovem.github.io/IO-35_appRECORD-ZhmuraArtem-FIOT-2025/" target="_blank" rel="noopener">
+        посилання
+      </a>
+    </li>
+    <li>Репозиторій самостійної роботи №1 (GitHub): 
+      <a href="https://github.com/Somnovem/IO-35_INDEPENDENT-ZhmuraArtem-FIOT-2025" target="_blank" rel="noopener">
+        посилання
+      </a>
+    </li>
+    <li>Самостійна робота №1 (Жива сторінка): 
+      <a href="https://somnovem.github.io/IO-35_INDEPENDENT-ZhmuraArtem-FIOT-2025/" target="_blank" rel="noopener">
+        посилання
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>Способи підключення стилів</h2>
+
+  <p>
+    Існують кілька способів підключення таблиць стилів CSS до HTML-сторінки. Найпоширенішими є:
+    <underline>зовнішні стилі</underline>, <underline>таблиці стилів документу (внутрішні стилі)</underline>
+    та <underline>вбудовані (inline-стилі)</underline>.
+  </p>
+
+  <h4>1. Зовнішні стилі</h4>
+  <p>
+    Застосовуються за допомогою елемента <code>&lt;link&gt;</code>, який розміщують усередині елемента
+    <code>&lt;head&gt;</code>:
+  </p>
+
+  <pre><code>&lt;head&gt;
+  ...
+  &lt;link rel="stylesheet" type="text/css" href="css/styles.css"&gt;
+  ...
+&lt;/head&gt;
+</code></pre>
+
+  <p>
+    Коли браузер зустрічає цей тег у HTML-документі, він завантажує вказаний CSS-файл і застосовує стилі,
+    що містяться в ньому. Такий підхід зручний тим, що спільні стилі для декількох сторінок можна винести
+    в окремий файл і підключати його у кожному документі за допомогою тега <code>&lt;link&gt;</code>,
+    не дублюючи CSS-код.
+  </p>
+
+  <h4>2. Таблиці стилів документу (внутрішні стилі)</h4>
+  <p>
+    Такі стилі розташовуються безпосередньо в HTML-документі й застосовуються лише до нього.
+    CSS-правила записуються між тегами <code>&lt;style&gt;</code>, зазвичай у секції
+    <code>&lt;head&gt;</code>:
+  </p>
+
+  <pre><code>&lt;style type="text/css"&gt;
+  p {
+    font-size: 12px;
+    color: #fff;
+  }
+&lt;/style&gt;
+</code></pre>
+
+  <p>
+    Тег <code>&lt;style&gt;</code> дозволяє швидко визначити стилі для окремої сторінки, проте при великій
+    кількості стилів код стає громіздким, тому його зазвичай замінюють зовнішнім CSS-файлом.
+  </p>
+
+  <h4>3. Вбудовані (inline) стилі</h4>
+  <p>
+    Якщо потрібно задати стиль лише для одного елемента, можна скористатися атрибутом
+    <code>style</code> безпосередньо в тегу HTML:
+  </p>
+
+  <pre><code>&lt;p style="color: black"&gt;Абзац із літерами чорного кольору&lt;/p&gt;
+
+&lt;p style="color: white; font-weight: 600"&gt;
+  Абзац із кількома CSS-властивостями
+&lt;/p&gt;
+</code></pre>
+
+  <p>
+    Усередині атрибуту <code>style</code> можна вказати кілька властивостей, розділених крапкою з комою.
+    Inline-стилі зручні для тестування або локальних змін, але не рекомендуються для великих проєктів.
+  </p>
+
+  <h4>Підключення стилів у моїй роботі</h4>
+  <p>
+    Під час розробки власного веб-додатка <strong>«Bookerino»</strong> я застосував метод
+    підключення стилів за допомогою тега <code>&lt;link&gt;</code>.
+    Для цього було створено окремий файл <code>style.css</code>, у якому розміщено всі необхідні
+    CSS-правила для елементів сайту. Після цього тег <code>&lt;link&gt;</code> було додано в секцію
+    <code>&lt;head&gt;</code> HTML-документа, а шлях до файлу вказано в атрибуті <code>href</code>:
+  </p>
+
+  <pre><code>&lt;link rel="stylesheet" href="css/style.css"&gt;
+</code></pre>
+
+  <p>
+    Такий спосіб дозволив зберігати стилі в окремому файлі, що значно полегшило їх редагування,
+    підтримку та підвищило читабельність коду всього веб-додатка.
+  </p>
+</section>
+
+<section>
+  <h2>СЕЛЕКТОРИ</h2>
+
+  <p>
+    У каскадних таблицях стилів (CSS) селектори визначають, до яких елементів HTML буде застосовано певні стилі.
+    У моїй роботі використано селектори тегів, класів, ідентифікаторів, а також комбіновані, атрибутні та з
+    псевдокласами/псевдоелементами. Нижче наведено приклади з реального CSS цього проєкту.
+  </p>
+
+  <h3>Селектори тегу</h3>
+  <p>
+    Селектори тегів застосовуються до всіх елементів певного типу. У цьому проєкті вони використовуються для
+    базового оформлення сторінки.
+  </p>
+
+  <pre><code>body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }</code></pre>
+
+  <p>Це скидає зовнішні відступи, встановлює пріоритетний системний стек шрифтів, визначає кольори тексту та фону за допомогою CSS-змінних і застосовує згладжування шрифтів.</p>
+
+  <figure>
+    <img class="img-lg" src="assets/selector-tag.png" alt="Базове оформлення тіла сторінки (body)"/>
+    <figcaption>Рис. 1 — Селектор тегу: базові стилі для <code>&lt;body&gt;</code>.</figcaption>
+  </figure>
+
+  <h3>Селектори класу</h3>
+  <p>
+    Класові селектори застосовуються до груп елементів, яким потрібне однакове оформлення.
+  </p>
+
+  <pre><code>.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(246, 247, 251, 0.9);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .topbar .logo img {
+    height: 36px;
+  }
+  </code></pre>
+
+  <p>Клас <code>.topbar</code> створює липку шапку (sticky) з <code>Flexbox</code>, розмитим фоном і нижньою межею. Стилі також задають висоту логотипу всередині неї.</p>
+
+  <figure>
+    <img class="img-lg" src="assets/selector-class.png" alt="Оформлення меню навігації через клас .main-nav" />
+    <figcaption>Рис. 2 — Селектори класу: шапка сайту та логотип.</figcaption>
+  </figure>
+
+  <h3>Селектори ідентифікаторів</h3>
+  <p>
+    Ідентифікатор використовується для унікальних секцій сторінки (hero, каталог, відгуки, бестселери).
+  </p>
+
+  <pre><code>#hero.banner {
+    max-width: 1200px;
+    margin: 32px auto 40px;
+    padding: 32px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #322b6f 0%, #5f4ddd 100%);
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 24px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  
+  #hero .hero-text h2 {
+    font-size: 32px;
+    margin: 0 0 12px;
+    line-height: 1.25;
+  }</code></pre>
+
+  <p>Секція <code>#hero</code> є гнучкою сіткою зі зображенням та текстом, що адаптується під різні розміри екрану. Заголовок має збільшений розмір, а кольори тексту та фону встановлені за допомогою CSS-змінних.</p>
+
+  <figure>
+    <img class="img-lg" src="assets/selector-id.png" alt="Секції hero, catalog, best-seller, feedback з оформленням через ID" />
+    <figcaption>Рис. 3 — Селектор ідентифікатора: гнучка секція hero та стилізація заголовків.</figcaption>
+  </figure>
+
+  <h3>Інші селектори</h3>
+
+  <h4>1. Комбіновані селектори</h4>
+  <p>Комбіновані селектори звертаються до вкладених елементів та їхніх станів.</p>
+
+  <pre><code>/* ADJACENT SELECTORS (Сусідні селектори) */
+    h2 + p {
+      margin-top: 8px;
+    }
+    
+    section h2 + .section-header {
+      margin-top: 0;
+    }
+    
+    /* CHILD SELECTORS (Дочірні селектори) */
+    #catalog > h2 {
+      margin-bottom: 24px;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    
+    #feedback > h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    
+    .feedback-form > label {
+      margin-bottom: 4px;
+    }</code></pre>
+
+    <p>
+      У розділі «Сусідні селектори» (Adjacent Selectors):
+      <ul>
+        <li>
+          Селектор <code>h2 + p</code> застосовує верхній відступ до елемента <code>&lt;p&gt;</code>, який <strong>одразу</strong> слідує за елементом <code>&lt;h2&gt;</code>.
+        </li>
+        <li>
+          Селектор <code>section h2 + .section-header</code> обнуляє верхній відступ усім елементам з класом <code>.section-header</code>, які <strong>одразу</strong> слідують за <code>&lt;h2&gt;</code>, якщо цей <code>&lt;h2&gt;</code> знаходиться всередині елемента <code>&lt;section&gt;</code>.
+        </li>
+      </ul>
+      У розділі «Дочірні селектори» (Child Selectors):
+      <ul>
+        <li>
+          Селектор <code>#catalog > h2</code> стилізує елемент <code>&lt;h2&gt;</code>, який є <strong>безпосереднім нащадком</strong> елемента з ідентифікатором <code>#catalog</code>.
+        </li>
+        <li>
+          Селектор <code>#feedback > h2</code> стилізує елемент <code>&lt;h2&gt;</code>, який є <strong>безпосереднім нащадком</strong> елемента з ідентифікатором <code>#feedback</code>.
+        </li>
+        <li>
+          Селектор <code>.feedback-form > label</code> застосовує нижній відступ до елементів <code>&lt;label&gt;</code>, які є <strong>безпосередніми нащадками</strong> елемента з класом <code>.feedback-form</code>.
+        </li>
+      </ul>
+    </p>
+
+  <figure>
+    <img class="img-lg" src="assets/selector-combined.png" alt="Картки книг та заголовок каталогу" />
+    <figcaption>Рис. 4 — Комбіновані селектори: <code>.book-card</code>, <code>.book-card:hover</code> та <code>#catalog &gt; h2</code>.</figcaption>
+  </figure>
+
+  <h4>2. Атрибутні селектори</h4>
+  <p>Атрибутні селектори вибирають елементи за значенням атрибуту.</p>
+
+  <pre><code>input[type="text"] {
+    font-family: inherit;
+  }
+  
+  input[type="text"]:focus {
+    border-color: var(--primary);
+  }
+  
+  input[required] {
+    border-left: 3px solid var(--accent);
+  }
+  
+  a[href^="https://"] {
+    color: var(--primary);
+  }
+  
+  a[href^="https://"]::after {
+    content: " ↗";
+    font-size: 0.85em;
+    opacity: 0.7;
+  }
+  
+  img[alt] {
+    border: 1px solid transparent;
+  }</code></pre>
+
+  <p>
+    Цей код використовує селектори атрибутів для стилізації текстових полів введення (зміна рамки при фокусі та додавання позначки для обов'язкових полів), а також для зміни кольору та додавання символу "↗" після захищених зовнішніх посилань.
+  </p>
+
+  <figure>
+    <img class="img-lg" src="assets/selector-attr.png" alt="Поле пошуку та активний пункт меню за aria-current" />
+    <figcaption>Рис. 5 — Атрибутний селектор для поля пошуку та позначення активної сторінки.</figcaption>
+  </figure>
+
+  <h4>3. Універсальний селектор</h4>
+  <p>Застосовується до всіх елементів</p>
+
+  <pre><code>*,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }</code></pre>
+
+  <p>Цей код встановлює стандартне значення <code>box-sizing</code> для всіх елементів на <code>border-box</code>, що забезпечує однорідність розмірів елементів та їхніх дочірніх елементів.</p>
+
+  <figure>
+    <img class="img-lg" src="assets/selector-universal.png" alt="Універсальний селектор" />
+    <figcaption>Рис. 6 — Універсальний селектор: стандартне значення <code>box-sizing</code> для всіх елементів.</figcaption>
+  </figure>
+
+  <p><strong>Підсумок:</strong> використано повний набір базових селекторів і їхніх комбінацій, що забезпечує охайну структуру стилів та зручну підтримку.</p>
+</section>
+
+<section>
+  <h2>CSS: Шрифти, Текст, Таблиці, Фон, Контур, Списки, CSS просунутий</h2>
+
+  <h4>Шрифти і текст</h4>
+  <p>
+    У проєкті підключено шрифт <code>Inter</code> з Google Fonts і застосовано до тіла сторінки.
+    Заголовки у hero-блоці мають збільшений розмір (32px) та міжрядковий інтервал для читабельності.
+  </p>
+
+  <pre><code>@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+#hero .hero-text h2 {
+  font-size: 32px;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+#hero .hero-text p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+}
+
+.book-card h3 {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text);
+}</code></pre>
+
+  <h4>Фон</h4>
+  <p>
+    Для шапки сайту використано напівпрозорий фон з розмиттям (backdrop-filter). Секція hero має градієнтний фон від #322b6f до #5f4ddd.
+  </p>
+
+  <pre><code>:root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --primary: #5a4ae3;
+  --primary-dark: #4336c4;
+  --text: #2f3042;
+  --muted: #6c6d7f;
+  --border: #e6e7f2;
+  --accent: #f59f00;
+  --shadow: 0 20px 50px rgba(31, 41, 115, 0.12);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(246, 247, 251, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+#hero.banner {
+  background: linear-gradient(135deg, #322b6f 0%, #5f4ddd 100%);
+  box-shadow: var(--shadow);
+}</code></pre>
+
+  <h4>Контур/рамка та стани елементів</h4>
+  <p>
+    Поля форми мають рамки з радіусом 10px і змінюють колір при фокусі. Кнопка отримує тінь і піднімається при наведенні (transform: translateY(-1px)).
+  </p>
+
+  <pre><code>.feedback-form input,
+.feedback-form textarea {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font: inherit;
+  background: #fafbff;
+  color: var(--text);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(90, 74, 227, 0.15);
+}
+
+.feedback-form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 14px 30px rgba(90, 74, 227, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.feedback-form button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(67, 54, 196, 0.4);
+}
+
+.book-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(51, 65, 130, 0.08);
+}</code></pre>
+
+  <h4>Таблиці / Каталог</h4>
+  <p>
+    Використано гнучку сітку карток книг (grid-layout) з тінями та hover-ефектом. Класична таблиця каталогу має закруглені кути та градієнтний заголовок.
+  </p>
+
+  <pre><code>/* Сітка карток книг */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.book-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 12px 30px rgba(51, 65, 130, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(51, 65, 130, 0.12);
+}
+
+/* Класична таблиця каталогу */
+#catalog table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+#catalog thead {
+  background: #edf0ff;
+}
+
+#catalog th,
+#catalog td {
+  padding: 14px 16px;
+  text-align: left;
+}
+
+#catalog th {
+  font-weight: 700;
+  color: #3e3f55;
+  font-size: 14px;
+}
+
+#catalog tbody tr + tr {
+  border-top: 1px solid var(--border);
+}
+
+#catalog td {
+  color: var(--muted);
+  font-size: 14px;
+}</code></pre>
+
+  <details>
+    <summary>Опційно: приклад базової таблиці</summary>
+    <pre><code>table.demo {
+  width: 100%;
+  border-collapse: collapse;
+}
+table.demo th, table.demo td {
+  border: 1px solid var(--color-border);
+  padding: 10px 12px;
+  text-align: left;
+}
+table.demo thead th {
+  background: var(--color-bg-tertiary);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}</code></pre>
+  </details>
+
+  <h4>Списки</h4>
+  <p>
+    Головне меню реалізовано як список без маркерів, вирівняний у ряд з gap 28px. Списки <code>.fancy-list</code> мають кастомні маркери через псевдоелемент <code>::before</code>.
+  </p>
+
+  <pre><code>.main-nav ul {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  font-weight: 600;
+  max-width: 1200px;
+  justify-content: center;
+}
+
+.main-nav a {
+  color: var(--muted);
+}
+
+.main-nav a:hover {
+  color: var(--primary);
+}
+
+.fancy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.fancy-list li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.fancy-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5a4ae3, #8d7bff);
+  box-shadow: 0 4px 10px rgba(90, 74, 227, 0.35);
+}</code></pre>
+
+  <h4>CSS просунутий</h4>
+  <p>
+    Використано плавні переходи (transition), тіні (box-shadow), hover-ефекти з transform та адаптивність через media-запити для різних розмірів екранів.
+  </p>
+
+  <pre><code>/* Hover-ефекти на картках книг */
+.book-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(51, 65, 130, 0.12);
+}
+
+/* Адаптивність блоків */
+@media (max-width: 1024px) {
+  #hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  #hero .hero-image {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 768px) {
+  #categories {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  
+  .team-section {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-grid {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+
+  <p><strong>Підсумок:</strong> у проєкті застосовано шрифт Inter, градієнтні фони, рамки з радіусами, тіні, гнучку сітку каталогу, стилізовані списки та адаптивність через media-запити.</p>
+</section>
+
+<section>
+  <h2>Висновок</h2>
+
+  <p>
+    Звіт за лабораторною роботою №2 демонструє повний спектр практичного застосування CSS: від підключення стилів та використання всіх типів селекторів (тегу, класу, ID, комбінованих, атрибутних, псевдокласів/псевдоелементів) до реалізації сучасного веб-дизайну. Робота охоплює оформлення шрифтів, кольорів, фону, списків, контурів, а також включає гнучку сітку каталогу книг, CSS-змінні, переходи та адаптивну верстку.
+  </p>
+</section>

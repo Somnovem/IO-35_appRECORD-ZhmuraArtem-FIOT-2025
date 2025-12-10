@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ІО-35 Жмура Артем | Звіти з практичних робіт</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Header Section -->
+      <header class="main-header">
+        <div class="header-background"></div>
+        <div class="header-content-wrapper">
+          <div class="header-main">
+            <div class="header-text-content">
+              <h1 class="header-title">
+                <span class="title-accent">ЗВІТИ</span> З ПРАКТИЧНИХ РОБІТ
+              </h1>
+              <h2 class="header-subtitle">З ДИСЦИПЛІНИ «WEB-ОРІЄНТОВАНІ ТЕХНОЛОГІЇ. FRONTEND РОЗРОБКИ»</h2>
+              <div class="student-badge">
+                <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span class="student-name"> Виконавець: Студент групи IO-35 — Жмура Артем Анатолійович</span>
+              </div>
+            </div>
+            <div class="header-photo-container">
+              <div class="photo-frame">
+                <img src="assets/student_photo.jpg" alt="Фото студента" class="student-photo" />
+                <div class="photo-glow"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="lab-navigation" aria-label="Навігація по лабораторним роботам">
+            <div class="nav-container">
+              <button class="nav-button" data-lab="pages/page1/page.html" aria-label="Практична робота №1">
+                <span class="nav-button-number">01</span>
+                <span class="nav-button-text">Практична робота №1</span>
+                <span class="nav-button-arrow">→</span>
+              </button>
+              <button class="nav-button" data-lab="pages/page2/page.html" aria-label="Практична робота №2">
+                <span class="nav-button-number">02</span>
+                <span class="nav-button-text">Практична робота №2</span>
+                <span class="nav-button-arrow">→</span>
+              </button>
+              <button class="nav-button" data-lab="pages/page3/page.html" aria-label="Практична робота №3">
+                <span class="nav-button-number">03</span>
+                <span class="nav-button-text">Практична робота №3</span>
+                <span class="nav-button-arrow">→</span>
+              </button>
+              <button class="nav-button" data-lab="pages/page4/page.html" aria-label="Практична робота №4">
+                <span class="nav-button-number">04</span>
+                <span class="nav-button-text">Практична робота №4</span>
+                <span class="nav-button-arrow">→</span>
+              </button>
+              <button class="nav-button" data-lab="pages/page5/page.html" aria-label="Практична робота №5">
+                <span class="nav-button-number">05</span>
+                <span class="nav-button-text">Практична робота №5</span>
+                <span class="nav-button-arrow">→</span>
+              </button>
+              <button class="nav-button" data-lab="pages/page6/page.html" aria-label="Практична робота №6">
+                <span class="nav-button-number">06</span>
+                <span class="nav-button-text">Практична робота №6</span>
+                <span class="nav-button-arrow">→</span>
+              </button>
+              <button class="nav-button" data-lab="pages/page7/page.html" aria-label="Практична робота №7">
+                <span class="nav-button-number">07</span>
+                <span class="nav-button-text">Практична робота №7</span>
+                <span class="nav-button-arrow">→</span>
+              </button>
+              <button class="nav-button" data-lab="pages/page8/page.html" aria-label="Практична робота №8">
+                <span class="nav-button-number">08</span>
+                <span class="nav-button-text">Практична робота №8</span>
+                <span class="nav-button-arrow">→</span>
+              </button>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Main Content Area -->
+      <div class="content-layout">
+        <!-- Table of Contents Sidebar -->
+        <aside id="toc" class="table-of-contents" aria-label="Зміст">
+          <div class="toc-header">
+            <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <h3 class="toc-title">Зміст</h3>
+          </div>
+          <nav class="toc-nav" aria-label="Навігація по змісту">
+            <ul class="toc-list"><!-- filled by script.js --></ul>
+          </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="content" class="main-content">
+          <div class="content-placeholder">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <p class="placeholder-text">Оберіть лабораторну роботу вище</p>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
