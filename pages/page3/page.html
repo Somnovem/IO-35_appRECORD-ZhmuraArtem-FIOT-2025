@@ -1,5 +1,5 @@
 <section>
-  <h2>3.1: Тема, Мета, Місце розташування сайту, звіту</h2>
+  <h2>Тема, Мета, Місце розташування сайту, звіту</h2>
 
   <p><strong>Тема:</strong> «Верстка веб-сторінки засобами CSS і Flexbox.»</p>
 
@@ -40,688 +40,524 @@
   </ul>
 </section>
 
-<section>
-  <h2>Способи підключення стилів</h2>
-
-  <p>
-    Існують кілька способів підключення таблиць стилів CSS до HTML-сторінки. Найпоширенішими є:
-    <strong>зовнішні стилі</strong>, <strong>таблиці стилів документу (внутрішні стилі)</strong>
-    та <strong>вбудовані (inline-стилі)</strong>.
-  </p>
-
-  <h4>1. Зовнішні стилі</h4>
-  <p>
-    Застосовуються за допомогою елемента <code>&lt;link&gt;</code>, який розміщують усередині елемента
-    <code>&lt;head&gt;</code>:
-  </p>
-
-  <pre><code>&lt;head&gt;
-  ...
-  &lt;link rel="stylesheet" type="text/css" href="css/style.css"&gt;
-  ...
-&lt;/head&gt;
-</code></pre>
-
-  <p>
-    Коли браузер зустрічає цей тег у HTML-документі, він завантажує вказаний CSS-файл і застосовує стилі,
-    що містяться в ньому. Такий підхід зручний тим, що спільні стилі для декількох сторінок можна винести
-    в окремий файл і підключати його у кожному документі за допомогою тега <code>&lt;link&gt;</code>,
-    не дублюючи CSS-код.
-  </p>
-
-  <h4>2. Таблиці стилів документу (внутрішні стилі)</h4>
-  <p>
-    Такі стилі розташовуються безпосередньо в HTML-документі й застосовуються лише до нього.
-    CSS-правила записуються між тегами <code>&lt;style&gt;</code>, зазвичай у секції
-    <code>&lt;head&gt;</code>:
-  </p>
-
-  <pre><code>&lt;style type="text/css"&gt;
-  p {
-    font-size: 16px;
-    color: #222222;
-  }
-&lt;/style&gt;
-</code></pre>
-
-  <p>
-    Тег <code>&lt;style&gt;</code> дозволяє швидко визначити стилі для окремої сторінки, проте при великій
-    кількості стилів код стає громіздким, тому його зазвичай замінюють зовнішнім CSS-файлом.
-  </p>
-
-  <h4>3. Вбудовані (inline) стилі</h4>
-  <p>
-    Якщо потрібно задати стиль лише для одного елемента, можна скористатися атрибутом
-    <code>style</code> безпосередньо в тегу HTML:
-  </p>
-
-  <pre><code>&lt;p style="color: black"&gt;Абзац із літерами чорного кольору&lt;/p&gt;
-
-&lt;p style="color: white; font-weight: bold"&gt;
-  Абзац із кількома CSS-властивостями
-&lt;/p&gt;
-</code></pre>
-
-  <p>
-    Усередині атрибуту <code>style</code> можна вказати кілька властивостей, розділених крапкою з комою.
-    Inline-стилі зручні для тестування або локальних змін, але не рекомендуються для великих проєктів.
-  </p>
-
-  <h4>Підключення стилів у моїй роботі</h4>
-  <p>
-    Під час розробки власного веб-додатка <strong>«Flower Design»</strong> я застосував метод
-    підключення стилів за допомогою тега <code>&lt;link&gt;</code>.
-    Для цього було створено окремий файл <code>style.css</code>, у якому розміщено всі необхідні
-    CSS-правила для елементів сайту. Після цього тег <code>&lt;link&gt;</code> було додано в секцію
-    <code>&lt;head&gt;</code> HTML-документа, а шлях до файлу вказано в атрибуті <code>href</code>:
-  </p>
-
-  <pre><code>&lt;link rel="stylesheet" href="css/styles.css"&gt;
-</code></pre>
-
-  <p>
-    Такий спосіб дозволив зберігати стилі в окремому файлі, що значно полегшило їх редагування,
-    підтримку та підвищило читабельність коду всього веб-додатка.
-  </p>
-</section>
-
-<section>
-  <h2>Семантична структура сторінки</h2>
-
-  <p>
-    Для побудови каркаса використано семантичні елементи HTML5:
-    <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>.
-    Це підвищує доступність і зрозумілість розмітки для пошукових систем та assistive-технологій.
-  </p>
-
-  <pre><code>&lt;header class="site-header"&gt;...&lt;/header&gt;
-
-&lt;main&gt;
-  &lt;section id="hero"&gt;...&lt;/section&gt;
-  &lt;section id="categories"&gt;...&lt;/section&gt;
-  &lt;section id="catalog"&gt;...&lt;/section&gt;
-&lt;/main&gt;
-
-&lt;footer id="contacts"&gt;...&lt;/footer&gt;
-</code></pre>
-
-  <figure>
-    <img class="img-lg" src="assets/structure.png" alt="Семантична структура сторінки Flower Design">
-    <figcaption>Рис. 1 — Семантична структура HTML-документа із секціями <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code> та <code>&lt;footer&gt;</code>.</figcaption>
-  </figure>
-
-  <p>
-    Кожен розділ групує логічно споріднений контент (hero, категорії, каталог, контакти),
-    що спрощує підтримку та адаптивну верстку.
-  </p>
-
-  <h4>Шапка та навігація: Flexbox і бургер-меню</h4>
-
-  <p>
-    Верхня панель реалізована на Flexbox: логотип та кнопка бургера вирівнюються по краях,
-    а навігація на мобільних розкривається під шапкою. Кнопка керує атрибутом
-    <code>aria-expanded</code> та станом <code>data-state</code> у навігації.
-  </p>
-
-  <h4>HTML</h4>
-  <pre><code>&lt;header class="site-header"&gt;
-  &lt;div class="container"&gt;
-    &lt;a class="logo" href="index.html"&gt;
-      &lt;img src="assets/images/logo.png" alt="Flower Design logo"&gt;
-    &lt;/a&gt;
-
-    &lt;button class="burger" aria-label="Меню" aria-expanded="false"&gt;
-      &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
-    &lt;/button&gt;
-
-    &lt;nav class="main-nav" aria-label="Головна навігація" data-state="closed"&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a href="index.html" aria-current="page"&gt;Каталог&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="about.html"&gt;Про нас&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#custom"&gt;Збери букет&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#contacts"&gt;Контакти&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/nav&gt;
-  &lt;/div&gt;
+<div class="container">
+  <section>
+      <h2>2. Семантичні компоненти інтерфейсу</h2>
+      <h3>2.1. Шапка (header) з логотипом та навігаційним меню</h3>
+      <div class="highlight-box">
+          <p>Реалізовано семантичний тег <code>&lt;header&gt;</code> з наступними елементами:</p>
+          <ul>
+              <li><strong>Логотип:</strong> <code>&lt;div class="logo"&gt;</code> з зображенням</li>
+              <li><strong>Пошук:</strong> <code>&lt;div class="search-bar"&gt;</code> з полем вводу</li>
+              <li><strong>Навігація:</strong> <code>&lt;nav class="main-nav"&gt;</code> з <code>&lt;ul&gt;</code></li>
+              <li><strong>Бургер-меню:</strong> <code>&lt;button class="burger-menu-toggle"&gt;</code> для мобільних пристроїв</li>
+              <li><strong>Іконки:</strong> профіль, обране та кошик покупок</li>
+          </ul>
+          <p><strong>HTML-код шапки:</strong></p>
+          <div class="code-block">
+              <code>
+&lt;header class="topbar"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="logo"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src="assets/images/logo.png" alt="Bookerino logo"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="search-bar"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;svg viewBox="0 0 24 24" aria-hidden="true"&gt;...&lt;/svg&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" placeholder="Search" aria-label="Пошук"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="top-actions"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="icon-btn" aria-label="Профіль"&gt;...&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="icon-btn" aria-label="Обране"&gt;...&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button class="icon-btn" aria-label="Кошик"&gt;...&lt;/button&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
 &lt;/header&gt;
-</code></pre>
+              </code>
+          </div>
+      </div>
 
-  <h4>CSS (фрагмент)</h4>
-  <pre><code>@media (max-width: 900px) {
-  .site-header { position: sticky; top: 0; z-index: 100; }
-  .site-header .container {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 8px 16px; min-height: 64px; position: relative;
-  }
-  .burger { display: inline-flex; position: relative; inline-size: 40px; block-size: 40px; margin-left: auto; }
-  .burger span { position: absolute; inset-inline: 8px; block-size: 2px; background: currentColor; }
-  .main-nav {
-    position: absolute; left: 0; right: 0; top: 100%;
-    background: #0b1020; border-top: 1px solid #1f2a44;
-    transform: translateY(-120%); transition: transform .3s ease, opacity .2s ease;
-    opacity: 0; pointer-events: none; z-index: 105;
-  }
-  .main-nav[data-state="open"] { transform: translateY(0); opacity: 1; pointer-events: auto; }
-}
-</code></pre>
+      <h3>2.2. Основний блок із розташуванням інформаційних карток</h3>
+      <div class="highlight-box">
+          <p>Реалізовано через семантичні теги <code>&lt;section&gt;</code>:</p>
+          <ul>
+              <li><strong>Hero-секція:</strong> <code>&lt;section id="hero" class="banner"&gt;</code> з заголовком та кнопкою</li>
+              <li><strong>Категорії:</strong> <code>&lt;section id="categories"&gt;</code> з картками категорій</li>
+              <li><strong>Товари:</strong> <code>&lt;section id="best-seller"&gt;</code> з сіткою карток книг</li>
+              <li><strong>Каталог:</strong> <code>&lt;section id="catalog"&gt;</code> з таблицею товарів</li>
+              <li><strong>Відгуки:</strong> <code>&lt;section id="feedback"&gt;</code> з формою відгуків</li>
+          </ul>
+          <p><strong>HTML-код основної структури:</strong></p>
+          <div class="code-block">
+              <code>
+&lt;main class="page-container"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="hero" class="banner"&gt;...&lt;/section&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="categories"&gt;...&lt;/section&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="best-seller"&gt;...&lt;/section&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="catalog"&gt;...&lt;/section&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;section id="feedback"&gt;...&lt;/section&gt;<br>
+&lt;/main&gt;
+              </code>
+          </div>
+      </div>
 
-  <h4>JavaScript (логіка перемикання)</h4>
-  <pre><code>(function(){
-  const btn = document.querySelector('.burger');
-  const nav = document.querySelector('.main-nav');
-  if(!btn || !nav) return;
-
-  function toggle(){
-    const open = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!open));
-    nav.dataset.state = open ? 'closed' : 'open';
-    document.body.style.overflow = (!open && matchMedia('(max-width:900px)').matches) ? 'hidden' : '';
-  }
-  btn.addEventListener('click', toggle);
-  nav.addEventListener('click', e =&gt; {
-    if(e.target.closest('a')) { btn.setAttribute('aria-expanded','false'); nav.dataset.state='closed'; document.body.style.overflow=''; }
-  });
-  addEventListener('resize', () =&gt; {
-    if (matchMedia('(min-width:901px)').matches) { document.body.style.overflow=''; nav.dataset.state='closed'; btn.setAttribute('aria-expanded','false'); }
-  });
-})();
-</code></pre>
-
-  <figure>
-    <img class="img-lg" src="assets/header-desktop.png" alt="Шапка сайту на десктопі">
-    <figcaption>Рис. 2 — Вигляд шапки сайту та горизонтальної навігації на десктопі.</figcaption>
-  </figure>
-
-  <figure>
-    <img class="img-lg" src="assets/header-mobile.png" alt="Бургер-меню на мобільному">
-    <figcaption>Рис. 3 — Розкрите бургер-меню на мобільному пристрої.</figcaption>
-  </figure>
-
-  <p>
-    На мобільних пристроях меню розкривається плавно під шапкою, блокує прокручування фону
-    та закривається по кліку на пункт навігації. На десктопі відображається звичайна горизонтальна
-    навігація без бургера.
-  </p>
-
-  <h4>Hero-секція: компоновка на Flexbox</h4>
-
-  <p>
-    Головний блок сторінки (#hero) реалізовано як гнучку секцію з двома підблоками:
-    зображення та текст. На десктопі вони розташовані поруч, а на мобільних — вертикально,
-    причому зображення відображається зверху, а текст — під ним.
-  </p>
-
-  <h4>HTML</h4>
-  <pre><code>&lt;section id="hero"&gt;
-  &lt;div class="hero-text"&gt;
-    &lt;h2&gt;Букет із кущових троянд "Довгоочікуване щастя"&lt;/h2&gt;
-    &lt;p&gt;Ніжний та витончений шик у букеті з троянд — гарний вибір для коханої людини&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class="hero-image"&gt;
-    &lt;img src="assets/images/bouquet-desktop.jpg" alt="Букет із троянд"&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-
-  <h4>CSS (фрагмент)</h4>
-  <pre><code>#hero{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:60px 0}
-#hero .hero-text{max-width:520px}
-#hero .hero-image img{display:block;width:100%;height:auto}
-
-@media (max-width:900px){
-  #hero{flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:20px 16px 40px}
-  #hero .hero-image{order:-1;display:flex;justify-content:center;align-items:flex-start;max-width:420px;width:100%}
-  #hero .hero-text{margin-top:20px;padding:0 8px}
-}
-</code></pre>
-
-  <p>
-    Завдяки Flexbox макет легко адаптується під різні екрани без дублювання розмітки.
-  </p>
-
-  <h4>Блок «Категорії»: картки з кнопками</h4>
-
-  <p>
-    Для категорій використано прості картки з фоновим зображенням та кнопкою дії.
-    На мобільних пристроях кнопка залишається всередині зображення, прижата до нижнього краю.
-  </p>
-
-  <h4>HTML</h4>
-  <pre><code>&lt;section id="categories"&gt;
-  &lt;div class="category"&gt;
-    &lt;img src="assets/images/bouquets.png" alt="Букети"&gt;
-    &lt;a class="btn" href="#"&gt;Букети&lt;/a&gt;
-  &lt;/div&gt;
-  &lt;div class="category"&gt;
-    &lt;img src="assets/images/natural_flowers.png" alt="Живі квіти"&gt;
-    &lt;a class="btn" href="#"&gt;Живі квіти&lt;/a&gt;
-  &lt;/div&gt;
-  &lt;div class="category"&gt;
-    &lt;img src="assets/images/own_bouquet.png" alt="Створи свій букет"&gt;
-    &lt;a class="btn" href="#"&gt;Свій букет&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-
-  <h4>CSS (фрагмент)</h4>
-  <pre><code>#categories{text-align:center;padding:60px 0;background:#fff}
-.category{display:inline-block;width:25%;margin:0 1.5%;position:relative;border-radius:8px;overflow:hidden}
-.category img{display:block;width:100%;height:auto}
-.category .btn{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);width:160px;padding:12px 0;font-weight:600;color:#fff;background:var(--header-bg);border-radius:6px}
-
-@media (max-width:900px){
-  .category{display:block;width:90%;margin:0 auto 24px}
-  .category .btn{bottom:16px;width:140px;padding:10px 0;font-size:.95rem}
-}
-</code></pre>
-
-  <figure>
-    <img class="img-lg" src="assets/categories-desktop.png" alt="Блок категорій на десктопі">
-    <figcaption>Рис. 4 — Категорії з кнопками на десктопній версії сайту.</figcaption>
-  </figure>
-
-  <figure>
-    <img class="img-lg" src="assets/categories-mobile.png" alt="Категорії на мобільному">
-    <figcaption>Рис. 5 — Категорії на мобільній версії (картки по одній у стовпчик).</figcaption>
-  </figure>
-
-  <p>
-    Кнопки залишаються читабельними на будь-якій ширині, а картки стають вертикальними на мобільних.
-  </p>
-  
-  <h4>Каталог: адаптивна сітка (CSS Grid)</h4>
-
-  <p>
-    Для каталогу застосовано CSS Grid із обмеженням максимум у три колонки на широких екранах.
-    На середніх ширинах сітка автоматично переходить у дві колонки, а на мобільних — в одну.
-  </p>
-
-  <h4>HTML</h4>
-  <pre><code>&lt;section id="catalog"&gt;
-  &lt;h2&gt;Каталог&lt;/h2&gt;
-  &lt;div class="catalog-grid"&gt;
-    &lt;div class="catalog-item"&gt;
-      &lt;img src="assets/images/bouquet_cart1.png" alt="Ніжна свіжість"&gt;
-      &lt;h3&gt;Ніжна свіжість&lt;/h3&gt;
-      &lt;div class="catalog-meta"&gt;
-        &lt;p class="desc"&gt;Троянди та лілії&lt;/p&gt;
-        &lt;p class="price"&gt;445&nbsp;грн&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!-- інші картки --&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-
-  <h4>CSS (фрагмент)</h4>
-  <pre><code>.catalog-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr); /* максимум 3 в ряд */
-  gap:28px;
-  width:90%;
-  max-width:1200px;
-  margin:0 auto;
-}
-@media (max-width:1200px){
-  .catalog-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
-}
-@media (max-width:900px){
-  .catalog-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
-}
-.catalog-item img{display:block;width:100%;height:220px;object-fit:cover}
-.catalog-meta{display:flex;justify-content:space-between;align-items:baseline;margin:6px 16px 16px}
-.catalog-meta .price{white-space:nowrap}
-</code></pre>
-
-  <figure>
-    <img class="img-lg" src="assets/catalog-grid.png" alt="Каталог букетів">
-    <figcaption>Рис. 6 — Сітка каталогу з трьома колонками на широких екранах.</figcaption>
-  </figure>
-
-  <p>
-    Завдяки <code>minmax()</code> і <code>auto-fit</code> сітка лишається стабільною без «дір» та
-    зберігає однакову ширину карток.
-  </p>
-  
-  <h4>Футер: колонки та адаптація</h4>
-
-  <p>
-    Нижній колонтитул складається з логотипа та трьох колонок із контактами/посиланнями.
-    На мобільних колонки лишаються в один ряд, але текст усередині вирівнюється ліворуч, а логотип — знизу по центру.
-  </p>
-
-  <h4>HTML</h4>
-  <pre><code>&lt;footer id="contacts"&gt;
-  &lt;div class="footer-container"&gt;
-    &lt;div class="footer-left"&gt;
-      &lt;div class="logo"&gt;&lt;img src="assets/images/logo.png" alt="Flower Design logo"&gt;&lt;/div&gt;
-      &lt;p&gt;Copyright © 2025&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;div class="footer-right"&gt;
-      &lt;div class="footer-column"&gt;...&lt;/div&gt;
-      &lt;div class="footer-column"&gt;...&lt;/div&gt;
-      &lt;div class="footer-column"&gt;...&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+      <h3>2.3. Нижній колонтитул (footer)</h3>
+      <div class="highlight-box">
+          <p>Реалізовано семантичний тег <code>&lt;footer&gt;</code> з:</p>
+          <ul>
+              <li>Структурованою інформацією у вигляді grid-сітки</li>
+              <li>Розділами: "Контакти", "Інформація", "Каталог"</li>
+              <li>Логотипом та копірайтом</li>
+          </ul>
+          <p><strong>HTML-код футера:</strong></p>
+          <div class="code-block">
+              <code>
+&lt;footer id="contacts"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;section class="footer-left"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="logo"&gt;...&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;© 2025 Bookerino&lt;/p&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/section&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;section class="footer-right"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3 class="footer-content-box-header"&gt;Контакти&lt;/h3&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="footer-content-box"&gt;...&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3 class="footer-content-box-header"&gt;Інформація&lt;/h3&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="footer-content-box"&gt;...&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/section&gt;<br>
 &lt;/footer&gt;
-</code></pre>
+              </code>
+          </div>
+      </div>
+  </section>
 
-  <h4>CSS (фрагмент)</h4>
-  <pre><code>#contacts{background:var(--header-bg);color:#fff;padding:40px 80px 36px}
-.footer-container{display:flex;justify-content:space-between;align-items:flex-start}
-.footer-left{display:flex;flex-direction:column;width:25%}
-.footer-right{display:flex;justify-content:space-between;width:65%}
-
-@media (max-width:900px){
-  #contacts{padding:24px 16px 20px}
-  .footer-container{flex-direction:column;gap:24px}
-  .footer-right{order:1;display:flex;justify-content:space-around;align-items:flex-start;flex-wrap:wrap;gap:16px}
-  .footer-column{width:30%;text-align:left}
-  .footer-left{order:2;align-items:center;width:100%}
-  .footer-left .logo img{height:56px;margin:8px auto 0;display:block}
+  <section>
+      <h2>3. Функціонально-стилістичні вимоги</h2>
+      
+      <h3>3.1. Адаптивна навігація з бургер-меню</h3>
+      <div class="highlight-box">
+          <h4>Реалізація:</h4>
+          <p><strong>HTML-код бургер-меню:</strong></p>
+          <div class="code-block">
+              <code>
+&lt;button class="burger-menu-toggle" aria-label="Меню"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;&lt;/span&gt;<br>
+&lt;/button&gt;
+              </code>
+          </div>
+          <p><strong>CSS-стилі:</strong></p>
+          <div class="code-block">
+              <code>
+.burger-menu-toggle {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;flex-direction: column;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;justify-content: space-around;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;width: 2rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;height: 2rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;background: transparent;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;border: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cursor: pointer;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;z-index: 101;<br>
+}<br>
+<br>
+.burger-menu-toggle span {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;width: 100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;height: 3px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;background: var(--primary);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;border-radius: 2px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transition: all 0.3s ease;<br>
+}<br>
+<br>
+.burger-menu-toggle.active span:nth-child(1) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transform: rotate(45deg) translate(0.4rem, 0.4rem);<br>
+}<br>
+<br>
+.burger-menu-toggle.active span:nth-child(2) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;opacity: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transform: translateX(-1rem);<br>
+}<br>
+<br>
+.burger-menu-toggle.active span:nth-child(3) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transform: rotate(-45deg) translate(0.4rem, -0.4rem);<br>
 }
-</code></pre>
+              </code>
+          </div>
+          <p><strong>JavaScript-функціонал:</strong> (файл <code>script.js</code>)</p>
+          <div class="code-block">
+              <code>
+(function(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;const btn = document.querySelector('.burger-menu-toggle');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;const nav = document.querySelector('.main-nav .nav-menu');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if(!btn || !nav) return;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;function toggle(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;btn.classList.toggle('active');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nav.classList.toggle('active');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.body.classList.toggle('menu-open');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;btn.addEventListener('click', toggle);<br>
+})();
+              </code>
+          </div>
+          <p><strong>Особливості:</strong></p>
+          <ul>
+              <li>Бургер-меню з'являється на екранах до 1200px</li>
+              <li>Плавна анімація перетворення іконки при кліку</li>
+              <li>Меню виїжджає зліва з плавним переходом</li>
+              <li>Автоматичне закриття меню при кліку на посилання</li>
+          </ul>
+      </div>
 
-  <figure>
-    <img class="img-lg" src="assets/footer-desktop.png" alt="Футер на десктопі">
-    <figcaption>Рис. 7 — Футер з логотипом та трьома колонками посилань на десктопі.</figcaption>
-  </figure>
-
-  <figure>
-    <img class="img-lg" src="assets/footer-mobile.png" alt="Футер на мобільному">
-    <figcaption>Рис. 8 — Адаптивний футер на мобільному (логотип по центру, текст ліворуч).</figcaption>
-  </figure>
-
-  <p>
-    Така розкладка зручна для читання на мобільних і зберігає структуру на десктопах.
-  </p>
-
-</section>
-
-<section>
-  <h2>Результати роботи</h2>
-
-  <p>
-    Головна сторінка сайту «Flower Design» зверстана семантично, підтримує адаптивність:
-    бургер-меню на мобільних, вертикальний hero-блок, картки категорій з кнопками,
-    каталог на CSS Grid із обмеженням до трьох колонок та адаптивний футер.
-    Інтерфейс коректно відображається в діапазоні від мобільних пристроїв до десктопів.
-  </p>
-</section>
-
-<section>
-  <h2>3.2: Тема, Мета, Місце розташування сайту, звіту</h2>
-
-  <p><strong>Тема:</strong> «Адаптивна верстка. Використання медіа-запитів CSS3.»</p>
-
-  <p><strong>Мета:</strong> Освоїти прийоми адаптації веб-інтерфейсу під різні пристрої (desktop, tablet, mobile), створити бургер-меню, адаптивну сітку контенту, коректно реалізувати поведінку елементів при зміні розміру екрана.</p>
-</section>
-
-<section>
-  <h2>Метатег viewport і базові брейкпоінти</h2>
-
-  <p>
-    Для коректного масштабування сторінки на мобільних пристроях використано метатег
-    <code>viewport</code>. Адаптацію виконано через медіа-запити з основним брейкпоінтом
-    <strong>900px</strong> (mobile-first підхід для ключових компонентів).
-  </p>
-
-  <h4>Фрагмент HTML</h4>
-  <pre><code>&lt;head&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-  ...
-&lt;/head&gt;</code></pre>
-
-  <h4>Базові медіа-запити</h4>
-  <pre><code>@media (max-width: 900px){ /* мобільна адаптація */ }
-@media (min-width: 901px){ /* поведінка для десктопів */ }</code></pre>
-
-  <figure>
-    <img class="img-lg" src="assets/devtools-breakpoints.png" alt="Перевірка медіа-запитів у DevTools">
-    <figcaption>Рис. 1 — Перевірка роботи медіа-запитів у інструментах розробника.</figcaption>
-  </figure>
-
-  <p>
-    Вибір 900px зумовлений тим, що на цьому порозі зручно перемикати розкладку навігації,
-    hero-секції, карток категорій, каталогу та футера.
-  </p>
-</section>
-
-<section>
-  <h2>Адаптивне Бургер-меню</h2>
-
-  <p>
-    На мобільних екранах навігація ховається під шапкою та розкривається кнопкою «бургер».
-    Стан меню контролюється атрибутами <code>aria-expanded</code> (кнопка) та
-    <code>data-state</code> (контейнер навігації), що покращує доступність.
-  </p>
-
-  <h4>CSS (мобільний фрагмент)</h4>
-  <pre><code>@media (max-width: 900px){
-  .site-header{ position: sticky; top:0; z-index:100; }
-  .site-header .container{
-    position:relative; display:flex; align-items:center; justify-content:space-between;
-    padding:8px 16px; min-height:64px;
-  }
-  .burger{ display:inline-flex; position:relative; inline-size:40px; block-size:40px; }
-  .main-nav{
-    position:absolute; left:0; right:0; top:100%;
-    background:#0b1020; border-top:1px solid #1f2a44;
-    transform:translateY(-120%); opacity:0; pointer-events:none;
-    transition:transform .3s ease, opacity .2s ease; z-index:105;
-  }
-  .main-nav[data-state="open"]{ transform:translateY(0); opacity:1; pointer-events:auto; }
-}</code></pre>
-
-  <h4>JS (перемикач)</h4>
-  <pre><code>(function(){
-  const btn=document.querySelector('.burger'); const nav=document.querySelector('.main-nav');
-  if(!btn||!nav) return;
-  const toggle=()=>{ const open=btn.getAttribute('aria-expanded')==='true';
-    btn.setAttribute('aria-expanded', String(!open));
-    nav.dataset.state=open?'closed':'open';
-    document.body.style.overflow=(!open && matchMedia('(max-width:900px)').matches)?'hidden':'';
-  };
-  btn.addEventListener('click', toggle);
-  nav.addEventListener('click', e=>{ if(e.target.closest('a')){ btn.setAttribute('aria-expanded','false'); nav.dataset.state='closed'; document.body.style.overflow=''; }});
-  addEventListener('resize', ()=>{ if(matchMedia('(min-width:901px)').matches){ document.body.style.overflow=''; nav.dataset.state='closed'; btn.setAttribute('aria-expanded','false'); }});
-})();</code></pre>
-
-  <figure>
-    <img class="img-lg" src="assets/burger-open.png" alt="Відкрите бургер-меню">
-    <figcaption>Рис. 2 — Відкрите бургер-меню з чотирма пунктами навігації.</figcaption>
-  </figure>
-
-  <p>
-    При відкритому меню фон блокується від прокрутки, при переході на десктоп скрол повертається.
-  </p>
-</section>
-
-<section>
-  <h2>Адаптивність для мобільної версії сайту</h2>
-
-  <p>
-    Вносимо зміни для покращення відображення ключових блоків сайту на смартфонах, забезпечуючи зручність взаємодії користувачів. Адаптуємо хедер, категорії, каталог і футер під мобільні екрани.
-  </p>
-  
-  <h4>Hero: мобільне перевпорядкування та підстановка зображень</h4>
-
-  <p>
-    На мобільних зображення hero відображається зверху, текст — нижче. Для підстановки відповідного
-    зображення (desktop або mobile) замість елемента <code>&lt;picture&gt;</code> використано
-    JavaScript-скрипт, який змінює джерело зображення в залежності від ширини екрана.
-  </p>
-
-  <h4>HTML (базова структура)</h4>
-  <pre><code>&lt;section id="hero"&gt;
-  &lt;div class="hero-text"&gt;...&lt;/div&gt;
-  &lt;div class="hero-image"&gt;
-    &lt;img src="assets/images/bouquet-desktop.png" alt="Букет із троянд"&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-
-  <h4>JS (динамічна підстановка зображення)</h4>
-  <pre><code>document.addEventListener('DOMContentLoaded', () => {
-  const img = document.querySelector('#hero .hero-image img');
-
-  function updateHeroImage() {
-    if (window.innerWidth <= 900) {
-      img.src = 'assets/images/bouquet-mobile.png';
-    } else {
-      img.src = 'assets/images/bouquet-desktop.png';
-    }
-  }
-
-  updateHeroImage();
-  window.addEventListener('resize', updateHeroImage);
-});
-</code></pre>
-
-  <h4>CSS (мобільна компоновка)</h4>
-  <pre><code>@media (max-width:900px){
-  #hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 16px 40px;
-    text-align: center;
-  }
-
-  #hero .hero-image {
-    order: -1;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    max-width: 420px;
-    width: 100%;
-  }
-
-  #hero .hero-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-}</code></pre>
-
-  <figure>
-    <img class="img-lg" src="assets/hero-mobile-new.png" alt="Hero після адаптації">
-    <figcaption>Рис. 3 — Hero-секція після адаптації: при ширині ≤900px автоматично підставляється мобільне зображення.</figcaption>
-  </figure>
-
-  <p>
-    Такий підхід через JavaScript дозволяє динамічно оновлювати зображення під час зміни ширини вікна,
-    забезпечуючи коректні пропорції без складних CSS-трансформацій і збереження оптимальної якості
-    зображення для кожного пристрою.
-  </p>
-
-  <h4>Категорії: кнопка всередині зображення на мобільних</h4>
-
-  <p>
-    У мобільній версії кнопка дії залишається всередині картки та прижата до нижнього краю зображення.
-  </p>
-
-  <h4>CSS (мобільний фрагмент)</h4>
-  <pre><code>@media (max-width:900px){
-  .category{ display:block; width:90%; margin:0 auto 24px; position:relative; overflow:hidden; border-radius:8px; }
-  .category img{ display:block; width:100%; height:auto; }
-  .category .btn{
-    position:absolute; left:50%; bottom:16px; transform:translateX(-50%);
-    width:140px; padding:10px 0; font-size:.95rem; border-radius:6px; background:var(--header-bg); color:#fff;
-  }
-}</code></pre>
-
-  <figure>
-    <img class="img-lg" src="assets/categories-btn-mobile.png" alt="Кнопка всередині картки">
-    <figcaption>Рис. 4 — Кнопка «Свій букет» розміщена всередині зображення на мобільній версії.</figcaption>
-  </figure>
-
-  <p>
-    Так користувач одразу бачить дію, не скролюючи нижче зображення.
-  </p>
-
-  <h4>Каталог: обмеження максимум 3 колонки + автоадаптація</h4>
-
-  <p>
-    На великих екранах кількість колонок обмежено трьома. Далі сітка автоматично переходить
-    у дві та одну колонку на вужчих екранах.
-  </p>
-
-  <h4>CSS</h4>
-  <pre><code>.catalog-grid{
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:28px; width:90%; max-width:1200px; margin:0 auto;
+      <h3>3.2. Адаптивна сітка контенту (flexbox/grid)</h3>
+      <div class="highlight-box">
+          <h4>Використання CSS Grid:</h4>
+          <div class="code-block">
+              <code>
+.book-grid {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;grid-template-columns: repeat(auto-fill, minmax(min(100%, 11.25rem), 1fr));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gap: clamp(0.75rem, 2vw, 1rem);<br>
 }
-@media (max-width:1200px){
-  .catalog-grid{ grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); }
+              </code>
+          </div>
+          <h4>Використання Flexbox:</h4>
+          <div class="code-block">
+              <code>
+.topbar {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;justify-content: space-between;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gap: clamp(1rem, 3vw, 1.5rem);<br>
 }
-@media (max-width:900px){
-  .catalog-grid{ grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:20px; }
+              </code>
+          </div>
+          <p><strong>Переваги:</strong></p>
+          <ul>
+              <li>Динамічна адаптація кількості колонок залежно від ширини екрана</li>
+              <li>Автоматичне вирівнювання елементів</li>
+              <li>Гнучкість та масштабованість</li>
+          </ul>
+      </div>
+
+      <h3>3.3. Медіа-запити (media queries)</h3>
+      <div class="highlight-box">
+          <h4>Реалізовані breakpoints:</h4>
+          <ul>
+              <li><strong>@media (max-width: 1024px):</strong> Адаптація для планшетів та менших десктопів</li>
+              <li><strong>@media (max-width: 900px):</strong> Адаптація навігації, поява бургер-меню</li>
+              <li><strong>@media (max-width: 768px):</strong> Адаптація для мобільних пристроїв</li>
+              <li><strong>@media (max-width: 480px):</strong> Адаптація для малих мобільних екранів</li>
+              <li><strong>@media (orientation: landscape):</strong> Адаптація для ландшафтної орієнтації</li>
+          </ul>
+          <p><strong>Приклад медіа-запиту:</strong></p>
+          <div class="code-block">
+              <code>
+@media (max-width: 900px) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.burger-menu-toggle {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.main-nav .nav-menu {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position: fixed;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;right: -100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: min(20rem, 80vw);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100vh;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flex-direction: column;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: var(--card);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transition: right 0.3s ease;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.main-nav .nav-menu.active {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;right: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 }
-.catalog-meta .price{ white-space:nowrap; } /* 450&nbsp;грн — завжди в один рядок */</code></pre>
+              </code>
+          </div>
+      </div>
 
-  <p>
-    Використання <code>minmax()</code> та <code>auto-fit</code> прибирає «дірки» в сітці та зберігає читабельність.
-  </p>
+      <h3>3.4. Відносні одиниці вимірювання</h3>
+      <div class="highlight-box">
+          <p><strong>Використані відносні одиниці:</strong></p>
+          <ul>
+              <li><strong>%</strong> - для ширини контейнерів та елементів (width: 100%)</li>
+              <li><strong>rem</strong> - для розмірів шрифтів та відступів (font-size: 1rem, padding: 1rem)</li>
+              <li><strong>clamp()</strong> - для адаптивних розмірів (clamp(0.75rem, 2vw, 1rem))</li>
+              <li><strong>vw/vh</strong> - для адаптації до viewport у функції clamp()</li>
+          </ul>
+          <p><strong>Приклади:</strong></p>
+          <div class="code-block">
+              <code>
+.page-container {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;max-width: 1200px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;margin: 0 auto;<br>
+}<br>
+<br>
+.topbar {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gap: clamp(1rem, 3vw, 1.5rem);<br>
+}<br>
+<br>
+section h2 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;font-size: clamp(1.25rem, 3vw, 1.5rem);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;margin-bottom: clamp(1rem, 2.5vw, 1.25rem);<br>
+}
+              </code>
+          </div>
+      </div>
 
-  <h4>Футер: три колонки в ряд, текст ліворуч; логотип знизу по центру</h4>
+      <h3>3.5. Візуальні ефекти та анімації</h3>
+      <div class="highlight-box">
+          <p><strong>Реалізовані ефекти:</strong></p>
+          <ul>
+              <li><strong>Плавні переходи:</strong> <code>transition: transform 0.3s ease, box-shadow 0.3s ease</code></li>
+              <li><strong>Ефект підняття карток:</strong> <code>transform: translateY(-0.5rem) scale(1.02)</code> при hover</li>
+              <li><strong>Зміна тіні:</strong> <code>box-shadow: 0 1rem 2.5rem rgba(51, 65, 130, 0.12)</code></li>
+              <li><strong>Анімація зображень:</strong> <code>transform: scale(1.1)</code> при hover</li>
+              <li><strong>Плавна зміна кольорів:</strong> <code>transition: color 0.3s ease</code></li>
+              <li><strong>Анімація бургер-меню:</strong> плавне перетворення іконки при кліку з rotate()</li>
+              <li><strong>Keyframe анімації:</strong> fadeIn, slideInUp, fadeInLeft, fadeInRight</li>
+          </ul>
+          <p><strong>Приклад анімації:</strong></p>
+          <div class="code-block">
+              <code>
+.book-card {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;opacity: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;animation: fadeInScale 0.5s ease forwards;<br>
+}<br>
+<br>
+.book-card:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transform: translateY(-0.5rem) scale(1.02);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;box-shadow: 0 1rem 2.5rem rgba(51, 65, 130, 0.12);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;border-color: var(--primary);<br>
+}<br>
+<br>
+@keyframes fadeInScale {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opacity: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transform: scale(0.9);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opacity: 1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transform: scale(1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+              </code>
+          </div>
+      </div>
+  </section>
 
-  <p>
-    На мобільних три інформаційні колонки лишаються в одному ряду (з перенесенням при браку місця),
-    текст усередині вирівняний по лівому краю; логотип і копірайт знаходяться нижче по центру.
-  </p>
+  <section>
+      <h2>4. Файлова структура веб-застосунку</h2>
+      <div class="highlight-box">
+          <h4>Організація файлів:</h4>
+          <ul>
+              <li><strong>HTML-документи:</strong> окремо в кореневій директорії
+                  <ul>
+                      <li><code>index.html</code> - головна сторінка</li>
+                      <li><code>description.html</code> - опис застосунку</li>
+                      <li><code>reports.html</code> - сторінка звітів</li>
+                  </ul>
+              </li>
+              <li><strong>Стилі:</strong> окремий файл <code>styles.css</code> в кореневій директорії</li>
+              <li><strong>Скрипти:</strong> окремий файл <code>script.js</code> для функціоналу бургер-меню</li>
+              <li><strong>Графічні ресурси:</strong> окрема папка <code>images/</code> з усіма зображеннями</li>
+              <li><strong>Звіти:</strong> окрема папка <code>reports/</code> з HTML-звітами</li>
+          </ul>
+          <p><strong>Висновок:</strong> Файлова структура логічно організована та відповідає вимогам. Всі ресурси зберігаються окремо відповідно до їх призначення.</p>
+      </div>
+  </section>
 
-  <h4>CSS (мобільний фрагмент)</h4>
-  <pre><code>@media (max-width:900px){
-  #contacts{ padding:24px 12px 20px; }
-  .footer-container{ display:flex; flex-direction:column; gap:24px; }
-  .footer-right{
-    order:1; display:flex; justify-content:space-around; align-items:flex-start;
-    flex-wrap:wrap; gap:16px; width:100%;
-  }
-  .footer-column{ width:30%; text-align:left; } /* текст ліворуч */
-  .footer-left{
-    order:2; align-items:center; justify-content:center; width:100%; text-align:center;
-  }
-  .footer-left .logo img{ height:56px; margin:8px auto 0; display:block; }
-}</code></pre>
+  <section>
+      <h2>5. Код бургер-меню</h2>
+      
+      <h3>5.1. HTML-код</h3>
+      <div class="code-block">
+          <code>
+&lt;button class="burger-menu-toggle" aria-label="Меню"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;&lt;/span&gt;<br>
+&lt;/button&gt;
+          </code>
+      </div>
 
-  <figure>
-    <img class="img-lg" src="assets/catalog-mobile.png" alt="Каталог на мобільному">
-    <figcaption>Рис. 5 — Каталог у мобільній версії: одна картка в ряду.</figcaption>
-  </figure>
+      <h3>5.2. CSS-код</h3>
+      <div class="code-block">
+          <code>
+.burger-menu-toggle {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;flex-direction: column;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;justify-content: space-around;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;width: 2rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;height: 2rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;background: transparent;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;border: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cursor: pointer;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;padding: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;z-index: 101;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;flex-shrink: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transition: all 0.3s ease;<br>
+}<br>
+<br>
+.burger-menu-toggle span {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;width: 100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;height: 3px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;background: var(--primary);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;border-radius: 2px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transition: all 0.3s ease;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transform-origin: center;<br>
+}<br>
+<br>
+.burger-menu-toggle.active span:nth-child(1) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transform: rotate(45deg) translate(0.4rem, 0.4rem);<br>
+}<br>
+<br>
+.burger-menu-toggle.active span:nth-child(2) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;opacity: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transform: translateX(-1rem);<br>
+}<br>
+<br>
+.burger-menu-toggle.active span:nth-child(3) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transform: rotate(-45deg) translate(0.4rem, -0.4rem);<br>
+}
+          </code>
+      </div>
 
-  <p>
-    Така схема зберігає швидкість сприйняття (ліве вирівнювання тексту) й брендинг внизу.
-  </p>
-</section>
+      <h3>5.3. JavaScript-код</h3>
+      <div class="code-block">
+          <code>
+(function(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;const btn = document.querySelector('.burger-menu-toggle');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;const nav = document.querySelector('.main-nav .nav-menu');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if(!btn || !nav) return;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;function toggle(){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;btn.classList.toggle('active');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nav.classList.toggle('active');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.body.classList.toggle('menu-open');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;btn.addEventListener('click', toggle);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nav.addEventListener('click', e => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(e.target.closest('a')) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;btn.classList.remove('active');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nav.classList.remove('active');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.body.classList.remove('menu-open');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+})();
+          </code>
+      </div>
 
-<section>
-  <h2>Тестування в інструментах розробника</h2>
+      <h3>5.4. Скріншот бургер-меню</h3>
+      <div style="text-align: center; margin: 2rem 0;">
+          <img src="assets/screenshot_burger.png" alt="Скріншот бургер-меню" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      </div>
+  </section>
 
-  <p>
-    Перевірку виконано в режимі «Responsive Design» (Zen Browser / DevTools): змінювався розмір вікна,
-    емулювалися популярні пристрої (iPhone/Pixel), перевірено відкриття/закриття бургер-меню,
-    перестроювання hero/категорій/каталогу, поведінка футера та відсутність горизонтального скролу.
-  </p>
+  <section>
+      <h2>6. Код медіа-запитів</h2>
+      
+      <h3>6.1. Медіа-запит для планшетів та менших екранів</h3>
+      <div class="code-block">
+          <code>
+@media (max-width: 1024px) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;html {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 15px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;#hero.banner {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid-template-columns: 1fr;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.topbar {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flex-wrap: wrap;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+          </code>
+      </div>
 
-  <h4>Чек-лист</h4>
-  <ul>
-    <li>Меню розкривається під шапкою; блокування фону працює.</li>
-    <li>Hero: зображення зверху, текст знизу; відступи коректні.</li>
-    <li>Категорії: кнопка всередині зображення, читабельність збережена.</li>
-    <li>Каталог: 3→2→1 колонки; ціна не переноситься (nowrap або &amp;nbsp;).</li>
-    <li>Футер: три колонки в ряд, текст ліворуч; логотип внизу по центру.</li>
-  </ul>
-</section>
+      <h3>6.2. Медіа-запит для мобільних пристроїв</h3>
+      <div class="code-block">
+          <code>
+@media (max-width: 900px) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.burger-menu-toggle {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.main-nav .nav-menu {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position: fixed;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;right: -100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: min(20rem, 80vw);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100vh;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flex-direction: column;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: var(--card);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transition: right 0.3s ease;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.main-nav .nav-menu.active {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;right: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;body.menu-open::before {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: '';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position: fixed;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;left: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: rgba(0, 0, 0, 0.5);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z-index: 99;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+          </code>
+      </div>
 
-<section>
-  <h2>Висновки</h2>
-  <p>
-    У процесі виконання 3.1 частини лабораторної роботи я опанував верстку на Flexbox та CSS Grid, навчився будувати адаптивні компоненти інтерфейсу з медіа-запитами. Реалізував семантичну структуру сторінки, мобільне бургер-меню та гнучкі сітки для контенту. Отриманий результат є зручним для підтримки і коректно масштабується на різних пристроях.
-  </p>
-  <p>
-    У процесі виконання 3.2 частини лабораторної роботи я опанував практичні прийоми адаптивної верстки: медіа-запити, мобільну навігацію з підтримкою доступності, гнучкі сітки контенту та адаптивні зображення. Забезпечив коректну роботу інтерфейсу на різних пристроях, оптимізувала розкладку без зайвих перевантажень CSS. Отриманий результат повністю відповідає вимогам.
-  </p>
-</section>
+      <h3>6.3. Медіа-запит для малих мобільних екранів</h3>
+      <div class="code-block">
+          <code>
+@media (max-width: 480px) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;html {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 14px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.topbar {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 0.75rem 1rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gap: 0.75rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;.book-grid {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gap: 0.75rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+          </code>
+      </div>
+  </section>
+
+  <section>
+      <h2>7. Висновки</h2>
+      <p>
+          Під час виконання лабораторної роботи №3 було реалізовано верстку власного сайту з повною відповідністю 
+          всім вимогам щодо адаптивності та функціональності.
+      </p>
+      <div class="highlight-box">
+          <h4>Основні досягнення:</h4>
+          <ol>
+              <li>Створено семантичну структуру HTML з використанням тегів <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code></li>
+              <li>Реалізовано адаптивну навігацію з бургер-меню, яка трансформується на пристроях з малою роздільною здатністю</li>
+              <li>Застосовано CSS Grid та Flexbox для створення адаптивної сітки контенту</li>
+              <li>Додано медіа-запити для адаптації стилів під різні розміри екранів (десктоп, планшет, смартфон)</li>
+              <li>Використано відносні одиниці вимірювання (% , rem, em) для забезпечення гнучкості інтерфейсу</li>
+              <li>Реалізовано візуальні ефекти та анімації (плавне відкриття меню, зміна стану елементів при наведенні)</li>
+              <li>Організовано логічну файлову структуру з окремими файлами для HTML, CSS, JavaScript та ресурсів</li>
+          </ol>
+      </div>
+      <p>
+          Отримані знання та навички дозволяють створювати сучасні адаптивні веб-сайти, які коректно відображаються 
+          на різних пристроях та розмірах екранів. Розуміння принципів адаптивної верстки, використання медіа-запитів 
+          та реалізація інтерактивних елементів є важливими для створення доступних та зручних веб-додатків.
+      </p>
+  </section>
