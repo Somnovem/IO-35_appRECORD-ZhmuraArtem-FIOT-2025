@@ -27,324 +27,704 @@
         посилання
       </a>
     </li>
-    <li>Репозиторій самостійної роботи №1 (GitHub): 
-      <a href="https://github.com/Somnovem/IO-35_INDEPENDENT-ZhmuraArtem-FIOT-2025" target="_blank" rel="noopener">
-        посилання
-      </a>
-    </li>
-    <li>Самостійна робота №1 (Жива сторінка): 
-      <a href="https://somnovem.github.io/IO-35_INDEPENDENT-ZhmuraArtem-FIOT-2025/" target="_blank" rel="noopener">
-        посилання
-      </a>
-    </li>
   </ul>
 </section>
 
 <section>
-  <h2>Завдання №1. Реалізація варіантів 2, 4, 6, 8, 9, 10</h2>
-
-  <p>
-    У межах першого завдання реалізовано шість прикладів роботи з об’єктами, масивами об’єктів,
-    callback-функціями, стрілочними функціями та перебираючими методами масиву.
-    Результати наведено після кожного фрагмента коду.
-  </p>
-
-  <h3>Варіант 2. Функція <code>getProductDetails</code> з колбек-функціями</h3>
-
-  <pre><code>const products = [
-  { id: 1, name: "Ноутбук", price: 25000 },
-  { id: 2, name: "Смартфон", price: 12000 },
-  { id: 3, name: "Навушники", price: 1500 },
-];
-
-function getProductDetails(productId, successCallback, errorCallback) {
-  const product = products.find((p) =&gt; p.id === productId);
-  if (product) {
-    successCallback(product);
-  } else {
-    errorCallback(`Товар з id=${productId} не знайдено`);
-  }
-}
-
-getProductDetails(
-  2,
-  (product) =&gt; console.log("✅ Знайдено товар:", product),
-  (errorMessage) =&gt; console.log("❌ Помилка:", errorMessage)
-);
-
-getProductDetails(
-  10,
-  (product) =&gt; console.log("✅ Знайдено товар:", product),
-  (errorMessage) =&gt; console.log("❌ Помилка:", errorMessage)
-);</code></pre>
-
-  <p><strong>Вивід у консолі:</strong></p>
-  <pre><code>✅ Знайдено товар: { id: 2, name: "Смартфон", price: 12000 }
-❌ Помилка: Товар з id=10 не знайдено</code></pre>
-
-  <h3>Варіант 4. Фільтрація та сортування майбутніх концертів</h3>
-
-  <pre><code>const concerts = {
-  Київ: new Date("2020-04-01"),
-  Умань: new Date("2025-07-02"),
-  Вінниця: new Date("2020-04-21"),
-  Одеса: new Date("2025-03-15"),
-  Хмельницький: new Date("2020-04-18"),
-  Харків: new Date("2025-07-10"),
-};
-
-const now = new Date();
-
-const upcomingCities = Object.entries(concerts)
-  .filter(([, date]) =&gt; date &gt; now)
-  .sort(([, d1], [, d2]) =&gt; d1 - d2)
-  .map(([city]) =&gt; city);
-
-console.log("📅 Майбутні концерти (міста у хронологічному порядку):", upcomingCities);</code></pre>
-
-  <p><strong>Вивід у консолі:</strong></p>
-  <pre><code>📅 Майбутні концерти (міста у хронологічному порядку): [ "Одеса", "Умань", "Харків" ]</code></pre>
-
-  <h3>Варіант 6. Знижка 30% для медикаментів з ціною понад 300 грн</h3>
-
-  <pre><code>const medicines = [
-  { name: "Noshpa", price: 170 },
-  { name: "Analgin", price: 55 },
-  { name: "Quanil", price: 310 },
-  { name: "Alphacholine", price: 390 },
-];
-
-const updatedMedicines = medicines.map((med, index) =&gt; {
-  const hasDiscount = med.price &gt; 300;
-  const newPrice = hasDiscount ? med.price * 0.7 : med.price;
-
-  return {
-    ...med,
-    id: index + 1,
-    price: Number(newPrice.toFixed(2)),
-    discountApplied: hasDiscount,
-  };
-});
-
-console.log("💊 Оновлений список медикаментів зі знижками:", updatedMedicines);</code></pre>
-
-  <p><strong>Вивід у консолі:</strong></p>
-  <pre><code>💊 Оновлений список медикаментів зі знижками:
-[
-  { name: "Noshpa", price: 170, id: 1, discountApplied: false },
-  { name: "Analgin", price: 55, id: 2, discountApplied: false },
-  { name: "Quanil", price: 217, id: 3, discountApplied: true },
-  { name: "Alphacholine", price: 273, id: 4, discountApplied: true }
-]</code></pre>
-
-  <h3>Варіант 8. Функція-конструктор <code>Storage</code></h3>
-
-  <pre><code>function Storage(initialItems) {
-  this.items = Array.isArray(initialItems) ? [...initialItems] : [];
-}
-
-Storage.prototype.getItems = function () {
-  return this.items;
-};
-
-Storage.prototype.addItem = function (item) {
-  this.items.push(item);
-};
-
-Storage.prototype.removeItem = function (item) {
-  this.items = this.items.filter((i) =&gt; i !== item);
-};
-
-const storage = new Storage(["apple", "banana", "mango"]);
-console.log("📦 Початкові товари на складі:", storage.getItems());
-storage.addItem("peach");
-console.log("📦 Після додавання 'peach':", storage.getItems());
-storage.removeItem("banana");
-console.log("📦 Після видалення 'banana':", storage.getItems());</code></pre>
-
-  <p><strong>Вивід у консолі:</strong></p>
-  <pre><code>📦 Початкові товари на складі: [ "apple", "banana", "mango" ]
-📦 Після додавання 'peach': [ "apple", "banana", "mango", "peach" ]
-📦 Після видалення 'banana': [ "apple", "mango", "peach" ]</code></pre>
-
-  <h3>Варіант 9. Підрахунок кількості тегів</h3>
-
-  <pre><code>const tweets = [
-  { id: "000", likes: 5, tags: ["js", "nodejs"] },
-  { id: "001", likes: 2, tags: ["html", "css"] },
-  { id: "002", likes: 17, tags: ["html", "js", "nodejs"] },
-  { id: "003", likes: 8, tags: ["css", "react"] },
-  { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
-];
-
-const tagStats = tweets
-  .flatMap((tweet) =&gt; tweet.tags)
-  .reduce((acc, tag) =&gt; {
-    acc[tag] = (acc[tag] || 0) + 1;
-    return acc;
-  }, {});
-
-console.log("🏷️ Кількість використань кожного тегу:", tagStats);</code></pre>
-
-  <p><strong>Вивід у консолі:</strong></p>
-  <pre><code>🏷️ Кількість використань кожного тегу:
-{ js: 3, nodejs: 3, html: 2, css: 2, react: 2 }</code></pre>
-
-  <h3>Варіант 10. Перевірка правильності дужок</h3>
-
-  <pre><code>function checkBrackets(str) {
-  const stack = [];
-  const pairs = {
-    ")": "(",
-    "]": "[",
-    "}": "{",
-  };
-
-  for (const char of str) {
-    if (char === "(" || char === "[" || char === "{") {
-      stack.push(char);
-    } else if (char === ")" || char === "]" || char === "}") {
-      if (stack.pop() !== pairs[char]) {
-        return false;
-      }
-    }
-  }
-
-  return stack.length === 0;
-}
-
-const example1 = "function test() { return [1, 2, 3]; }";
-const example2 = "function fail( { ] }";
-
-console.log(`🔍 Рядок 1: "${example1}" →`, checkBrackets(example1));
-console.log(`🔍 Рядок 2: "${example2}" →`, checkBrackets(example2));</code></pre>
-
-  <p><strong>Вивід у консолі:</strong></p>
-  <pre><code>🔍 Рядок 1: "function test() { return [1, 2, 3]; }" → true
-🔍 Рядок 2: "function fail( { ] }" → false</code></pre>
+  <h2>Варіант лабораторної роботи - 9</h2>
 </section>
 
 <section>
-  <h2>Завдання №2. Реалізація варіантів 2, 4, 6 та Calculator</h2>
+  <h2>ЗАВДАННЯ 1</h2>
 
-  <p>
-    У другому завданні продемонстровано використання перебираючих методів масиву
-    (<code>some</code>, <code>map</code>, <code>sort</code>) та реалізовано клас
-    <code>Calculator</code> із підтримкою ланцюжкових викликів методів.
-    Усі приклади перевірені через консоль браузера.
-  </p>
+  <p><strong>Текст завдання:</strong> Збережіть введене значення (використати метод prompt()) у змінну value. Вивести це значення у Console, використовуючи шаблонний рядок. Перевірити: введене значення від'ємне? Додатнє? Дорівнює нулю? Відповідь вивести за допомогою alert(). Наприклад: при введенні 80 виведе «Число додатнє». Підказка: При введенні значень не забудьте зробити ряд перевірок.</p>
 
-  <h3>Варіант 2. Перевірка наявності користувача молодше 20 років</h3>
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 1: Перевірка значення на додатність/від'ємність/нуль
+const value = prompt("Введіть значення:");
 
-  <pre><code>const people = [
-  { name: "John", age: 27 },
-  { name: "Jane", age: 31 },
-  { name: "Bob", age: 19 },
-];
+console.log(`Введене значення: ${value}`);
 
-const hasUnder20 = people.some((person) =&gt; person.age &lt; 20);
-
-console.log("👥 Чи є людина молодше 20 років?", hasUnder20);</code></pre>
-
-  <p><strong>Вивід у консолі:</strong></p>
-  <pre><code>👥 Чи є людина молодше 20 років? true</code></pre>
-
-  <h3>Варіант 4. Формування масиву квадратів елементів</h3>
-
-  <pre><code>const numbersForSquares = [1, 2, 3, 4, 5];
-
-const squares = numbersForSquares.map((num) =&gt; num * num);
-
-console.log("🧮 Квадрати елементів масиву:", squares);</code></pre>
-
-  <p><strong>Вивід у консолі:</strong></p>
-  <pre><code>🧮 Квадрати елементів масиву: [1, 4, 9, 16, 25]</code></pre>
-
-  <h3>Варіант 6. Сортування користувачів за віком за зростанням</h3>
-
-  <pre><code>const users = [
-  { name: "John", age: 27 },
-  { name: "Jane", age: 31 },
-  { name: "Bob", age: 19 },
-];
-
-const sortedByAge = [...users].sort((a, b) =&gt; a.age - b.age);
-
-console.log("📊 Користувачі, відсортовані за віком:", sortedByAge);</code></pre>
-
-  <p><strong>Вивід у консолі:</strong></p>
-  <pre><code>📊 Користувачі, відсортовані за віком:
-[
-  { name: "Bob", age: 19 },
-  { name: "John", age: 27 },
-  { name: "Jane", age: 31 }
-]</code></pre>
-
-  <h3>Calculator. Ланцюжкові арифметичні операції</h3>
-
-  <p>
-    Реалізовано клас <code>Calculator</code>, який дозволяє послідовно виконувати арифметичні
-    операції над числом за допомогою ланцюжкових викликів методів.
-  </p>
-
-  <pre><code>class Calculator {
-  constructor() {
-    this._value = 0;
+if (value === null || value === "") {
+  alert("Значення не введено");
+} else {
+  const numValue = Number(value);
+  
+  if (isNaN(numValue)) {
+    alert("Введено не число");
+  } else if (numValue > 0) {
+    alert("Число додатнє");
+  } else if (numValue < 0) {
+    alert("Число від'ємне");
+  } else {
+    alert("Число дорівнює нулю");
   }
+}</code></pre>
 
-  number(value) {
-    this._value = Number(value);
-    return this;
-  }
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Введене значення (prompt)</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Вивід у консоль</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Повідомлення (alert)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">80</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введене значення: 80</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Число додатнє</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">-15</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введене значення: -15</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Число від'ємне</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">0</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введене значення: 0</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Число дорівнює нулю</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"abc"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введене значення: abc</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введено не число</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">null (Cancel)</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введене значення: null</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Значення не введено</td>
+      </tr>
+    </tbody>
+  </table>
 
-  getResult() {
-    return this._value;
-  }
+  <script src="js/task1.js"></script>
+</section>
 
-  add(value) {
-    this._value += Number(value);
-    return this;
-  }
+<section>
+  <h2>ЗАВДАННЯ 2</h2>
 
-  subtract(value) {
-    this._value -= Number(value);
-    return this;
-  }
+  <p><strong>Текст завдання:</strong> Змінна number може набувати 4 значення: '1', '2', '3' або '4' (запитуй це значення у користувача через prompt). Якщо вона має значення '1', то у змінну result запишіть 'зима', якщо має значення '2' - 'весна' і так далі. Розв'яжіть завдання через switch-case. Не забудьте про дефолтне значення, на випадок, якщо користувач введе в prompt щось інше. Значення змінної result виведіть в консоль.</p>
 
-  multiply(value) {
-    this._value *= Number(value);
-    return this;
-  }
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 2: Визначення пори року через switch-case
+const number = prompt("Введіть число (1, 2, 3 або 4):");
+let result;
 
-  divide(value) {
-    const num = Number(value);
-    if (num === 0) {
-      throw new Error("Ділення на 0 неможливе");
+switch (number) {
+  case '1':
+    result = 'зима';
+    break;
+  case '2':
+    result = 'весна';
+    break;
+  case '3':
+    result = 'літо';
+    break;
+  case '4':
+    result = 'осінь';
+    break;
+  default:
+    result = 'невідома пора року';
+}
+
+console.log(`Результат: ${result}`);</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Введене значення (prompt)</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Вивід у консоль</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">'1'</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Результат: зима</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">'2'</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Результат: весна</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">'3'</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Результат: літо</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">'4'</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Результат: осінь</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">'5' або інше</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Результат: невідома пора року</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="js/task2.js"></script>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 3</h2>
+
+  <p><strong>Текст завдання:</strong> Є Admin та User, з відповідними паролями. (Об'явити, проініцілізувати) Написати програмний код, який запитуватиме у користувача логін (використати prompt) і виводить результат в консоль браузера, використовуючи шаблонний рядок. Після цього додайте перевірку введеного користувачем значення: якщо відвідувач вводить "Admin", то prompt запитує пароль. У випадку вдалої ідентифікації в alert вивести «Hello, Admin»; якщо нічого не ввели або натиснули Cancel, то вивести в alert рядок "Cancelled"; в іншому випадку вивести в alert рядок "I don't know you". Теж саме виконати з User.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 3: Перевірка логіну та пароля для Admin та User
+const adminPassword = "admin123";
+const userPassword = "user123";
+
+const login = prompt("Введіть логін:");
+
+console.log(`Введений логін: ${login}`);
+
+if (login === null || login.trim() === "") {
+  alert("Cancelled");
+} else {
+  const trimmedLogin = login.trim();
+  
+  if (trimmedLogin === "Admin") {
+    const password = prompt("Введіть пароль:");
+    if (password === adminPassword) {
+      alert("Hello, Admin");
+    } else {
+      alert("Невірний пароль");
     }
-    this._value /= num;
-    return this;
+  } else if (trimmedLogin === "User") {
+    const password = prompt("Введіть пароль:");
+    if (password === userPassword) {
+      alert("Hello, User");
+    } else {
+      alert("Невірний пароль");
+    }
+  } else {
+    alert("I don't know you");
+  }
+}</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Введений логін</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Введений пароль</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Вивід у консоль</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Повідомлення (alert)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"Admin"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">"admin123"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введений логін: Admin</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Hello, Admin</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"Admin"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">"wrong"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введений логін: Admin</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Невірний пароль</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"User"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">"user123"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введений логін: User</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Hello, User</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"Guest"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">-</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введений логін: Guest</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">I don't know you</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">null (Cancel)</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">-</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введений логін: null</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Cancelled</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="js/task3.js"></script>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 4</h2>
+
+  <p><strong>Текст завдання:</strong> Станція з продажу ремонтних дроїдів. Оголоси функцію makeTransaction, яка очікує два параметри, значення яких будуть задаватися під час її виклику: quantity— перший параметр, число, що містить кількість замовлених дроїдів; pricePerDroid — другий параметр, число, що містить вартість одного дроїда. Напиши код функції так, щоб вона повертала рядок з повідомленням про покупку ремонтних дроїдів: "You ordered &lt;quantity&gt; droids worth &lt;totalPrice&gt; credits!", де: &lt;quantity&gt; — це кількість замовлених дроїдів; &lt;totalPrice&gt; — це загальна вартість замовлення, тобто вартість усіх замовлених дроїдів.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 4: Функція makeTransaction для покупки дроїдів
+function makeTransaction(quantity, pricePerDroid) {
+  const totalPrice = quantity * pricePerDroid;
+  return `You ordered ${quantity} droids worth ${totalPrice} credits!`;
+}
+
+// Приклад використання
+console.log(makeTransaction(5, 3000));
+console.log(makeTransaction(3, 1000));
+console.log(makeTransaction(10, 500));</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Виклик функції</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Повернене значення</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>makeTransaction(5, 3000)</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">"You ordered 5 droids worth 15000 credits!"</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>makeTransaction(3, 1000)</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">"You ordered 3 droids worth 3000 credits!"</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>makeTransaction(10, 500)</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">"You ordered 10 droids worth 5000 credits!"</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="js/task4.js"></script>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 5</h2>
+
+  <p><strong>Текст завдання:</strong> Функція checkForSpam(message) приймає рядок (параметр message), перевіряє його на вміст заборонених слів spam і sale, і повертає результат перевірки. Слова в рядку параметра message можуть бути в довільному регістрі, наприклад SPAM або sAlE. Доповни код функції таким чином, що: Якщо знайдено заборонене слово (spam або sale), то функція повертає буль true; Якщо в рядку відсутні заборонені слова, функція повертає буль false.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 5: Функція checkForSpam для перевірки заборонених слів
+function checkForSpam(message) {
+  const lowerMessage = message.toLowerCase();
+  return lowerMessage.includes('spam') || lowerMessage.includes('sale');
+}
+
+// Приклади використання
+console.log(checkForSpam("Latest technology news")); // false
+console.log(checkForSpam("JavaScript weekly newsletter")); // false
+console.log(checkForSpam("Get best SALE offers now")); // true
+console.log(checkForSpam("Amazing SalE, only today!")); // true
+console.log(checkForSpam("Trust me, this is not a spam message")); // true
+console.log(checkForSpam("Get rid of sPaM emails. Our book in on sale!")); // true
+console.log(checkForSpam("[SPAM] How to earn fast money?")); // true</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Виклик функції</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Повернене значення</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>checkForSpam("Latest technology news")</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">false</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>checkForSpam("JavaScript weekly newsletter")</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">false</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>checkForSpam("Get best SALE offers now")</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">true</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>checkForSpam("Amazing SalE, only today!")</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">true</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>checkForSpam("Trust me, this is not a spam message")</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">true</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>checkForSpam("[SPAM] How to earn fast money?")</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">true</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="js/task5.js"></script>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 6</h2>
+
+  <p><strong>Текст завдання:</strong> Напиши функцію filterArray(numbers, value), яка приймає масив чисел (numbers) та значення (value) як параметри. Функція повинна повертати новий масив лише тих чисел із масиву numbers, які більші за значення value. Усередині функції: Створи порожній масив, у який будеш додавати підходящі числа. Використай цикл для ітерації кожного елемента масиву numbers. Використовуй умовний оператор if усередині циклу для перевірки кожного елемента и додавання до свого масиву. Поверни свій новий масив з підходящими числами як результат.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 6: Функція filterArray для фільтрації чисел
+function filterArray(numbers, value) {
+  const filteredArray = [];
+  
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > value) {
+      filteredArray.push(numbers[i]);
+    }
+  }
+  
+  return filteredArray;
+}
+
+// Приклади використання
+console.log(filterArray([1, 2, 3, 4, 5], 3)); // [4, 5]
+console.log(filterArray([1, 2, 3, 4, 5], 4)); // [5]
+console.log(filterArray([1, 2, 3, 4, 5], 5)); // []
+console.log(filterArray([12, 24, 8, 41, 76], 38)); // [41, 76]
+console.log(filterArray([12, 24, 8, 41, 76], 20)); // [24, 41, 76]</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Виклик функції</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Повернене значення</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>filterArray([1, 2, 3, 4, 5], 3)</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[4, 5]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>filterArray([1, 2, 3, 4, 5], 4)</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[5]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>filterArray([1, 2, 3, 4, 5], 5)</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>filterArray([12, 24, 8, 41, 76], 38)</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[41, 76]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><code>filterArray([12, 24, 8, 41, 76], 20)</code></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[24, 41, 76]</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="js/task6.js"></script>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 7</h2>
+
+  <p><strong>Текст завдання:</strong> 1. Заданий масив цілих чисел. Побудувати новий масив, в якому спочатку стоять числа, що діляться на 2, потім ті, що діляться на 2 та 3, потім на 3. Надрукувати вхідний та вихідний масиви. Застосувати функції. 2. Упорядкувати масив у порядку зростання. (метод Швидкого сортування) Надрукувати вхідний та вихідний масив. Застосувати функції.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 7: Сортування масиву та побудова нового масиву за умовами
+// Частина 1: Побудова нового масиву за умовами ділення
+function buildSortedArray(arr) {
+  const divisibleBy2 = [];
+  const divisibleBy2And3 = [];
+  const divisibleBy3 = [];
+  
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % 2 === 0 && arr[i] % 3 === 0) {
+      divisibleBy2And3.push(arr[i]);
+    } else if (arr[i] % 2 === 0) {
+      divisibleBy2.push(arr[i]);
+    } else if (arr[i] % 3 === 0) {
+      divisibleBy3.push(arr[i]);
+    }
+  }
+  
+  return [...divisibleBy2, ...divisibleBy2And3, ...divisibleBy3];
+}
+
+// Частина 2: Швидке сортування (Quick Sort)
+function quickSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  
+  const pivot = arr[Math.floor(arr.length / 2)];
+  const left = [];
+  const middle = [];
+  const right = [];
+  
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else if (arr[i] > pivot) {
+      right.push(arr[i]);
+    } else {
+      middle.push(arr[i]);
+    }
+  }
+  
+  return [...quickSort(left), ...middle, ...quickSort(right)];
+}</code></pre>
+
+  <h3>Приклади використання:</h3>
+  
+  <h4>Частина 1: Побудова масиву за умовами ділення</h4>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Вхідний масив</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Вихідний масив</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">[12, 6, 4, 9, 8, 15, 3, 18, 7]</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[4, 8, 12, 6, 18, 9, 15, 3]</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><em>Пояснення: спочатку числа, що діляться на 2 (4, 8, 12), потім на 2 і 3 (6, 18), потім на 3 (9, 15, 3)</em></p>
+
+  <h4>Частина 2: Швидке сортування</h4>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Вхідний масив</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Вихідний масив</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">[64, 34, 25, 12, 22, 11, 90]</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[11, 12, 22, 25, 34, 64, 90]</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="js/task7.js"></script>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 8</h2>
+
+  <p><strong>Текст завдання:</strong> Є двовимірний масив додатніх і від'ємних чисел. (об'явити проініціалізувати генератором випадкових чисел). Вивести у Console браузера. Створити два масива: масив додатніх чисел і масив від'ємних чисел. Третій елемент у додатньому масиві заміни на від'ємне значення, яке буде введено за допомогою prompt. Вивести у Console браузера.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 8: Робота з двовимірним масивом додатніх і від'ємних чисел
+function generateRandomArray(rows, cols) {
+  const arr = [];
+  for (let i = 0; i < rows; i++) {
+    arr[i] = [];
+    for (let j = 0; j < cols; j++) {
+      // Генеруємо числа від -50 до 50
+      arr[i][j] = Math.floor(Math.random() * 101) - 50;
+    }
+  }
+  return arr;
+}
+
+const twoDimArray = generateRandomArray(3, 4);
+console.log("Двовимірний масив:", twoDimArray);
+
+// Створюємо масив додатніх чисел
+const positiveArray = [];
+// Створюємо масив від'ємних чисел
+const negativeArray = [];
+
+for (let i = 0; i < twoDimArray.length; i++) {
+  for (let j = 0; j < twoDimArray[i].length; j++) {
+    if (twoDimArray[i][j] > 0) {
+      positiveArray.push(twoDimArray[i][j]);
+    } else if (twoDimArray[i][j] < 0) {
+      negativeArray.push(twoDimArray[i][j]);
+    }
   }
 }
 
-const calc = new Calculator();
-const result = calc
-  .number(10)
-  .add(5)
-  .subtract(3)
-  .multiply(4)
-  .divide(2)
-  .getResult();
+console.log("Масив додатніх чисел:", positiveArray);
+console.log("Масив від'ємних чисел:", negativeArray);
 
-console.log("🧮 Результат обчислень Calculator:", result);</code></pre>
+// Замінюємо третій елемент у додатньому масиві
+if (positiveArray.length >= 3) {
+  const replacementValue = prompt("Введіть від'ємне значення для заміни третього елемента:");
+  if (replacementValue !== null && replacementValue !== "") {
+    const numValue = Number(replacementValue);
+    if (!isNaN(numValue) && numValue < 0) {
+      positiveArray[2] = numValue;
+      console.log("Оновлений масив додатніх чисел:", positiveArray);
+    }
+  }
+}</code></pre>
 
-  <p><strong>Вивід у консолі:</strong></p>
-  <pre><code>🧮 Результат обчислень Calculator: 24</code></pre>
+  <h3>Приклади використання:</h3>
+  <p><strong>Приклад роботи з двовимірним масивом:</strong></p>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Етап</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Результат</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Двовимірний масив (3x4)</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[[15, -23, 8, -5], [32, -11, 19, -40], [7, -18, 25, -3]]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Масив додатніх чисел</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[15, 8, 32, 19, 7, 25]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Масив від'ємних чисел</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[-23, -5, -11, -40, -18, -3]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Після заміни 3-го елемента (prompt: "-50")</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[15, 8, -50, 32, 19, 7, 25]</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><em>Примітка: Двовимірний масив генерується випадковими числами від -50 до 50. Третій елемент додатнього масиву замінюється значенням, введеним через prompt().</em></p>
+
+  <script src="js/task8.js"></script>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 9</h2>
+
+  <p><strong>Текст завдання:</strong> Назва: Візуальний елемент «Підказка при уведенні». Надати можливість виведення підказки при наборі тексту у елемент уведення «текстове поле». Передбачити можливість створення списку слів-підказок.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 9: Візуальний елемент «Підказка при уведенні»
+// Створюємо список слів-підказок
+const hints = [
+  "JavaScript",
+  "Java",
+  "Python",
+  "C++",
+  "HTML",
+  "CSS",
+  "React",
+  "Vue",
+  "Angular",
+  "Node.js"
+];
+
+// Функція для створення та ініціалізації автодоповнення
+function initAutocomplete() {
+  const input = document.getElementById('autocomplete-input');
+  const suggestionsList = document.getElementById('suggestions-list');
+  
+  // Функція для фільтрації підказок
+  function filterHints(value) {
+    if (value.length === 0) {
+      return [];
+    }
+    const lowerValue = value.toLowerCase();
+    return hints.filter(hint => 
+      hint.toLowerCase().startsWith(lowerValue)
+    );
+  }
+  
+  // Функція для відображення підказок
+  function showSuggestions(filteredHints) {
+    suggestionsList.innerHTML = '';
+    
+    if (filteredHints.length === 0) {
+      suggestionsList.style.display = 'none';
+      return;
+    }
+    
+    suggestionsList.style.display = 'block';
+    
+    filteredHints.forEach(hint => {
+      const li = document.createElement('li');
+      li.textContent = hint;
+      li.className = 'suggestion-item';
+      
+      li.addEventListener('click', () => {
+        input.value = hint;
+        suggestionsList.style.display = 'none';
+      });
+      
+      suggestionsList.appendChild(li);
+    });
+  }
+  
+  // Обробник події введення тексту
+  input.addEventListener('input', (e) => {
+    const value = e.target.value;
+    const filteredHints = filterHints(value);
+    showSuggestions(filteredHints);
+  });
+}</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <p><strong>Список підказок:</strong> JavaScript, Java, Python, C++, HTML, CSS, React, Vue, Angular, Node.js</p>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Введений текст</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Повернені підказки (filterHints)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"j"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">["JavaScript", "Java"]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"ja"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">["JavaScript", "Java"]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"jav"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">["JavaScript", "Java"]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"p"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">["Python"]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"re"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">["React"]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"c"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">["C++", "CSS"]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"" (порожній рядок)</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[]</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"xyz"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">[]</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <style>
+    .suggestion-item {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+    }
+    .suggestion-item:hover {
+      background-color: #f0f0f0;
+    }
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+
+  <script src="js/task9.js"></script>
 </section>
 
 <section>
   <h2>Висновки</h2>
 
   <p>
-    Під час виконання лабораторної роботи було опрацьовано створення та використання об’єктів у JavaScript, роботу з їх методами, масивами об’єктів і деструктуризацією. Реалізовано приклади застосування callback-функцій, стрілочних функцій і перебираючих методів масиву, таких як <code>map</code>, <code>filter</code>, <code>reduce</code>, <code>sort</code> та <code>some</code>. У результаті роботи вдалося закріпити навички роботи з даними, навчитися будувати гнучкі функціональні структури, моделювати поведінку об’єктів через функції-конструктори й класи та виконувати послідовні обчислення за допомогою ланцюжкових викликів методів. Отримані знання є базовими для розуміння сучасної парадигми об’єктно-орієнтованого програмування в JavaScript і подальшої розробки інтерактивних вебзастосунків.
+    Під час виконання лабораторної роботи було опрацьовано основи мови JavaScript: роботу зі змінними, операторами, умовними конструкціями (if-else, switch-case), циклами (for), функціями та масивами. Реалізовано приклади застосування prompt() та alert() для взаємодії з користувачем, шаблонних рядків для форматування виводу, функцій для обробки даних, роботи з двовимірними масивами та реалізації візуального елемента автодоповнення. У результаті роботи вдалося закріпити навички роботи з основами JavaScript, навчитися будувати функціональні структури, обробляти введені користувачем дані та створювати інтерактивні елементи інтерфейсу. Отримані знання є базовими для розуміння програмування на JavaScript і подальшої розробки веб-застосунків.
   </p>
 </section>
