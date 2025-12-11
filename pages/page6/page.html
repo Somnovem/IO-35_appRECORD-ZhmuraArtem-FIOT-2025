@@ -1,0 +1,519 @@
+<section>
+  <h2>Тема, Мета, Місце розташування сайту, звіту</h2>
+
+  <p><strong>Тема:</strong> «Прототипи. Класи. Об'єктна модель документа (DOM). Події. Об'єкт події. Делегування подій.»</p>
+
+  <p><strong>Мета:</strong> Придбати практичні навички роботи з DOM, обробкою подій, делегуванням подій у JavaScript та реалізацією інтерактивних елементів веб-сторінки.</p>
+
+  <h4>Посилання на виконані завдання</h4>
+  <ul>
+    <li>Репозиторій власного веб-застосунку (GitHub):
+      <a href="https://github.com/Somnovem/IO-35_appWEB-ZhmuraArtem-FIOT-2025" target="_blank" rel="noopener">
+        посилання
+      </a>
+    </li>
+    <li>Власний веб-застосунок (Жива сторінка):
+      <a href="https://somnovem.github.io/IO-35_appWEB-ZhmuraArtem-FIOT-2025/" target="_blank" rel="noopener">
+        посилання
+      </a>
+    </li>
+    <li>Репозиторій звітного HTML-документа (GitHub): 
+      <a href="https://github.com/Somnovem/IO-35_appRECORD-ZhmuraArtem-FIOT-2025" target="_blank" rel="noopener">
+        посилання
+      </a>
+    </li>
+    <li>Звітний HTML-документ (Жива сторінка): 
+      <a href="https://somnovem.github.io/IO-35_appRECORD-ZhmuraArtem-FIOT-2025/" target="_blank" rel="noopener">
+        посилання
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>Делегування подій: Модальне вікно</h2>
+
+  <p><strong>Опис:</strong> У власному WEB-застосунку створено програмний код делегування подій: при виборі елемента в колекції елементів відкривається модальне вікно. Використано DOMContentLoaded для правильного завантаження скрипту після завантаження DOM.</p>
+
+  <h3>Код JavaScript (delegate.js):</h3>
+  <pre><code>document.addEventListener('DOMContentLoaded', function() {
+    // Елементи модального вікна
+    let modal = document.getElementById('modal');
+    let modalContent = document.getElementById('modal-content');
+
+    // Створення модального вікна, якщо воно не існує (для демонстрації)
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'modal';
+        modal.style.cssText = 'display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center;';
+        
+        modalContent = document.createElement('div');
+        modalContent.id = 'modal-content';
+        modalContent.style.cssText = 'background-color: #fff; padding: 25px; border-radius: 10px; width: 90%; max-width: 500px; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: Arial, sans-serif;';
+        
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+    }
+    
+    // Делегування подій на document
+    document.addEventListener('click', function(event) {
+        // Шукаємо клік по картці або її нащадках
+        const itemCard = event.target.closest('.item-card');
+        
+        if (itemCard) {
+            // Збір даних
+            const title = itemCard.dataset.title || itemCard.querySelector('.item-title').innerText;
+            const description = itemCard.dataset.description || itemCard.querySelector('.item-description').innerText;
+            const price = itemCard.dataset.price || '';
+
+            // Формування контенту
+            const priceHtml = price ? '&lt;p style="font-weight: bold; color: #15ad7b; margin-top: 10px;"&gt;Ціна: ' + price + '&lt;/p&gt;' : '';
+            
+            modalContent.innerHTML = 
+                '&lt;h2 style="margin-top: 0; color: #333;"&gt;' + title + '&lt;/h2&gt;' +
+                '&lt;p style="color: #666; line-height: 1.5;"&gt;' + description + '&lt;/p&gt;' +
+                priceHtml +
+                '&lt;button class="modal-close" style="margin-top: 20px; padding: 10px 20px; background-color: #15ad7b; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;"&gt;Закрити&lt;/button&gt;';
+            
+            modal.style.display = 'flex';
+        } 
+        // Закриття вікна
+        else if (event.target === modal || event.target.classList.contains('modal-close')) {
+            modal.style.display = 'none';
+        }
+    });
+});</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b; color: white;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Дія</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Результат</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Клік на картку товару</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Відкривається модальне вікно</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Клік на кнопку "Закрити"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Модальне вікно зникає</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background-color: #f9f9f9; padding: 20px; border: 1px solid #eee; border-radius: 8px; margin: 20px 0; text-align: center;">
+    <p style="margin-bottom: 15px; font-weight: bold; color: #555;">Демонстрація:</p>
+    <p style="margin-bottom: 15px; color: #666;">Для перегляду робочої демонстрації делегування подій перейдіть на окрему сторінку:</p>
+    <a href="delegate-demo.html" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #15ad7b; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s ease;">Відкрити демонстрацію</a>
+  </div>
+</section>
+
+<section>
+  <h2>Посилання на сторінку з практичними завданнями</h2>
+  <div style="margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #f9f9f9 0%, #e8f5e9 100%); border: 2px solid #15ad7b; border-radius: 10px; text-align: center; box-shadow: 0 4px 12px rgba(21, 173, 123, 0.15);">
+    <a href="tasks.html" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background-color: #15ad7b; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(21, 173, 123, 0.3);">
+      <span>Перейти до практичних завдань</span>
+      <span style="font-size: 18px; transition: transform 0.3s ease;">→</span>
+    </a>
+    <style>
+      a[href="tasks.html"]:hover {
+        background-color: #128a63 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(21, 173, 123, 0.4) !important;
+      }
+      a[href="tasks.html"]:hover span:last-child {
+        transform: translateX(4px);
+      }
+    </style>
+  </div>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 1</h2>
+
+  <p><strong>Текст завдання:</strong> У звітному HTML-документі створити html-розміту, яка складається з наступних елементів: текст, кнопка, поле введення. Натискання на кнопку "SHOW ME" має виводити значення з поля введення у консолі.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 1: Виведення значення з поля введення у консоль
+document.addEventListener('DOMContentLoaded', function() {
+  const showButton = document.getElementById('show-btn');
+  const inputField = document.getElementById('input-field');
+
+  if (showButton && inputField) {
+    showButton.addEventListener('click', function() {
+      const value = inputField.value;
+      console.log('Введене значення:', value);
+    });
+  }
+});</code></pre>
+
+  <h3>HTML-розмітка:</h3>
+  <pre><code>&lt;div&gt;
+  &lt;p&gt;Введіть текст:&lt;/p&gt;
+  &lt;input type="text" id="input-field" placeholder="Введіть значення"&gt;
+  &lt;button id="show-btn"&gt;SHOW ME&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Введене значення</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Вивід у консоль</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"Hello World"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введене значення: Hello World</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"12345"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введене значення: 12345</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">"" (порожнє)</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Введене значення: </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; text-align: center; background-color: #f9f9f9;">
+    <p style="margin-bottom: 15px; font-weight: bold; color: #555;">Демонстрація:</p>
+    <img src="assets/screenshot_task1.png" alt="Скріншот завдання 1" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 0 auto;" />
+  </div>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 2</h2>
+
+  <p><strong>Текст завдання:</strong> У звітному HTML-документі створити html-розміту, яка складається з наступних елементів: текст, кнопка, інпут (поле введення). Кнопка "Приховати" ховає текст, виводячи зірочки замість введеної інформації, замінює назву кнопки на "Розкрити", при повторному натисканні текст знову стає доступним і кнопка набуває початкового вигляду.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 2: Приховування/розкриття тексту
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleButton = document.getElementById('toggle-btn');
+  const inputField = document.getElementById('password-input');
+  let isHidden = false;
+
+  if (toggleButton && inputField) {
+    toggleButton.addEventListener('click', function() {
+      if (isHidden) {
+        // Розкриваємо текст
+        inputField.type = 'text';
+        toggleButton.textContent = 'Приховати';
+        isHidden = false;
+      } else {
+        // Приховуємо текст
+        inputField.type = 'password';
+        toggleButton.textContent = 'Розкрити';
+        isHidden = true;
+      }
+    });
+  }
+});</code></pre>
+
+  <h3>HTML-розмітка:</h3>
+  <pre><code>&lt;div&gt;
+  &lt;p&gt;Введіть пароль:&lt;/p&gt;
+  &lt;input type="text" id="password-input" placeholder="Введіть пароль"&gt;
+  &lt;button id="toggle-btn"&gt;Приховати&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Стан</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Тип поля</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Текст кнопки</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Початковий</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">text (видимий)</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Приховати</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Після натискання</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">password (зірочки)</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Розкрити</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Після повторного натискання</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">text (видимий)</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Приховати</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; text-align: center; background-color: #f9f9f9;">
+    <p style="margin-bottom: 15px; font-weight: bold; color: #555;">Демонстрація:</p>
+    <img src="assets/screenshot_task2.png" alt="Скріншот завдання 2" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 0 auto;" />
+    <img src="assets/screenshot_task2_2.png" alt="Скріншот завдання 2" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 0 auto;" />
+  </div>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 3</h2>
+
+  <p><strong>Текст завдання:</strong> У звітному HTML-документі створити html-розміту, яка складається з наступних елементів: текст, з використанням селектора класу (class="taskTitle"), div, з використанням селектора ідентифікатора (id="place"). Додайте слухач кліку на window і визначте чи клікнув користувач у div з id="place". Примітка: Якщо користувач клікнув на зеленому прямокутнику – у консолі виведе true. У протилежному випадку - false.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 3: Визначення кліку на div з id="place"
+document.addEventListener('DOMContentLoaded', function() {
+  const placeDiv = document.getElementById('place');
+
+  window.addEventListener('click', function(event) {
+    const clickedOnPlace = event.target === placeDiv || placeDiv.contains(event.target);
+    console.log('Клікнуто на div#place:', clickedOnPlace);
+  });
+});</code></pre>
+
+  <h3>HTML-розмітка:</h3>
+  <pre><code>&lt;p class="taskTitle"&gt;Клікніть будь-де на сторінці&lt;/p&gt;
+&lt;div id="place" style="width: 200px; height: 100px; background-color: green;"&gt;&lt;/div&gt;</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Місце кліку</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Вивід у консоль</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Клік на зеленому div#place</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Клікнуто на div#place: true</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Клік поза div#place</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Клікнуто на div#place: false</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; text-align: center; background-color: #f9f9f9;">
+    <p style="margin-bottom: 15px; font-weight: bold; color: #555;">Демонстрація:</p>
+    <img src="assets/screenshot_task3.png" alt="Скріншот завдання 3" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 0 auto;" />
+  </div>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 4</h2>
+
+  <p><strong>Текст завдання:</strong> HTML містить список категорій ul#categories. Напиши скрипт, який: 1. Порахує і виведе в консоль кількість категорій в ul#categories, тобто елементів li.item. 2. Для кожного элемента li.item у списку ul#categories, знайде і виведе в консоль текст заголовку елемента (тегу &lt;h2&gt;) і кількість елементів в категорії (усіх &lt;li&gt;, вкладених в нього). Для виконання цього завдання потрібно використати метод forEach() і властивості навігації по DOM.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 4: Підрахунок категорій та елементів
+document.addEventListener('DOMContentLoaded', function() {
+  const categoriesList = document.getElementById('categories');
+  
+  if (categoriesList) {
+    const categories = categoriesList.querySelectorAll('li.item');
+    const numberOfCategories = categories.length;
+    
+    console.log('Number of categories:', numberOfCategories);
+    
+    categories.forEach(category => {
+      const title = category.querySelector('h2').textContent;
+      const items = category.querySelectorAll('li');
+      const numberOfItems = items.length;
+      
+      console.log('Category:', title);
+      console.log('Elements:', numberOfItems);
+    });
+  }
+});</code></pre>
+
+  <h3>HTML-розмітка:</h3>
+  <pre><code>&lt;ul id="categories"&gt;
+  &lt;li class="item"&gt;
+    &lt;h2&gt;Animals&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Cat&lt;/li&gt;
+      &lt;li&gt;Hamster&lt;/li&gt;
+      &lt;li&gt;Horse&lt;/li&gt;
+      &lt;li&gt;Parrot&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li class="item"&gt;
+    &lt;h2&gt;Products&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Bread&lt;/li&gt;
+      &lt;li&gt;Prasley&lt;/li&gt;
+      &lt;li&gt;Cheese&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li class="item"&gt;
+    &lt;h2&gt;Technologies&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+      &lt;li&gt;JavaScript&lt;/li&gt;
+      &lt;li&gt;React&lt;/li&gt;
+      &lt;li&gt;Node.js&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Вивід у консоль</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Number of categories: 3<br>Category: Animals<br>Elements: 4<br>Category: Products<br>Elements: 3<br>Category: Technologies<br>Elements: 5</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; text-align: center; background-color: #f9f9f9;">
+    <p style="margin-bottom: 15px; font-weight: bold; color: #555;">Демонстрація:</p>
+    <img src="assets/screenshot_task4.png" alt="Скріншот завдання 4" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 0 auto;" />
+  </div>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 5</h2>
+
+  <p><strong>Текст завдання:</strong> Напиши скрипт управління формою логіна. 1. Обробка відправлення форми form.login-form повинна відбуватися за подією submit. 2. Під час відправлення форми сторінка не повинна перезавантажуватися. 3. Якщо при сабміті у формі є незаповнені поля, виводь alert з попередженням про те, що 'All form fields must be filled in'. Не додавай на інпути атрибут required, валідація має відбуватися саме через JS. 4. Якщо користувач заповнив усі поля і відправив форму, збери значення полів в об'єкт з двома властивостями, де ключ — це ім'я інпутів, а значення — відповідні значення цих інпутів, очищені від пробілів по краях. Для доступу до елементів форми використовуй властивість elements. 5. При сабміті форми виведи об'єкт із введеними даними в консоль і очисти значення полів форми методом reset.</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 5: Управління формою логіна
+document.addEventListener('DOMContentLoaded', function() {
+  const loginForm = document.querySelector('.login-form');
+  
+  if (loginForm) {
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const formData = new FormData(loginForm);
+      const email = formData.get('email')?.trim();
+      const password = formData.get('password')?.trim();
+      
+      if (!email || !password) {
+        alert('All form fields must be filled in');
+        return;
+      }
+      
+      const userData = {
+        email: email,
+        password: password
+      };
+      
+      console.log('User data:', userData);
+      loginForm.reset();
+    });
+  }
+});</code></pre>
+
+  <h3>HTML-розмітка:</h3>
+  <pre><code>&lt;form class="login-form"&gt;
+  &lt;label&gt;
+    Email
+    &lt;input type="email" name="email" /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;
+    Password
+    &lt;input type="password" name="password" /&gt;
+  &lt;/label&gt;
+  &lt;button type="submit"&gt;Log in&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Введені дані</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Результат</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Email: "", Password: ""</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Alert: "All form fields must be filled in"</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Email: "user@example.com", Password: "password123"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Console: { email: "user@example.com", password: "password123" }<br>Форма очищена</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; text-align: center; background-color: #f9f9f9;">
+    <p style="margin-bottom: 15px; font-weight: bold; color: #555;">Демонстрація:</p>
+    <img src="assets/screenshot_task5.png" alt="Скріншот завдання 5" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 0 auto;" />
+  </div>
+</section>
+
+<section>
+  <h2>ЗАВДАННЯ 6</h2>
+
+  <p><strong>Текст завдання:</strong> Напиши скрипт, який змінює колір фону елемента &lt;body&gt; через інлайн-стиль по кліку на button.change-color і задає це значення кольору текстовим вмістом для span.color. Для генерування випадкового кольору використовуй функцію getRandomHexColor().</p>
+
+  <h3>Код JavaScript:</h3>
+  <pre><code>// Завдання 6: Зміна кольору фону body
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, 0)}`;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const changeColorButton = document.querySelector('.change-color');
+  const colorSpan = document.querySelector('.color');
+  
+  if (changeColorButton && colorSpan) {
+    changeColorButton.addEventListener('click', function() {
+      const randomColor = getRandomHexColor();
+      document.body.style.backgroundColor = randomColor;
+      colorSpan.textContent = randomColor;
+    });
+  }
+});</code></pre>
+
+  <h3>HTML-розмітка:</h3>
+  <pre><code>&lt;div class="widget"&gt;
+  &lt;p&gt;Background color: &lt;span class="color"&gt;-&lt;/span&gt;&lt;/p&gt;
+  &lt;button type="button" class="change-color"&gt;Change color&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3>Приклади використання:</h3>
+  <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+    <thead>
+      <tr style="background-color: #15ad7b;">
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Дія</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Результат</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">Клік на кнопку "Change color"</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">Фон body змінюється на випадковий колір<br>span.color відображає hex-значення (наприклад: #a3f2d1)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; text-align: center; background-color: #f9f9f9;">
+    <p style="margin-bottom: 15px; font-weight: bold; color: #555;">Демонстрація:</p>
+    <img src="assets/screenshot_task6.png" alt="Скріншот завдання 6" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; margin: 0 auto;" />
+  </div>
+</section>
+
+<section>
+  <h2>Висновки</h2>
+
+  <p>
+    У ході лабораторної роботи було ґрунтовно опрацьовано механізми взаємодії JavaScript із структурою веб-сторінки, зосередивши увагу на Document Object Model (DOM) та обробці подій. Були закріплені практичні навички навігації та маніпуляції DOM-деревом для отримання інформації про структуру та динамічної зміни стилів елементів. Ключовим досягненням стала реалізація ефективних обробників подій, зокрема застосування делегування подій для оптимізованої роботи з великою кількістю або динамічно доданими елементами. Додатково було реалізовано важливі функції, такі як валідація даних форм безпосередньо через JavaScript, що забезпечує створення надійних та високоінтерактивних елементів веб-сторінки, необхідних для розробки сучасних динамічних застосунків.
+  </p>
+</section>
+

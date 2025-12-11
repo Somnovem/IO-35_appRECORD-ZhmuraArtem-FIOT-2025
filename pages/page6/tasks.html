@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання - Практична робота №6</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .task-section {
+            background-color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .task-section h2 {
+            color: #15ad7b;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #15ad7b;
+            padding-bottom: 10px;
+        }
+        
+        .task-section p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        /* Task 1 Styles */
+        #task1-input-field {
+            padding: 8px;
+            margin: 10px 0;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        #task1-show-btn {
+            padding: 8px 15px;
+            background-color: #15ad7b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #task1-show-btn:hover {
+            background-color: #128a63;
+        }
+        
+        /* Task 2 Styles */
+        #task2-password-input {
+            padding: 8px;
+            margin: 10px 0;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        #task2-toggle-btn {
+            padding: 8px 15px;
+            background-color: #15ad7b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #task2-toggle-btn:hover {
+            background-color: #128a63;
+        }
+        
+        /* Task 3 Styles */
+        #task3-place {
+            width: 200px;
+            height: 100px;
+            background-color: green;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        
+        /* Task 4 Styles */
+        #task4-categories {
+            list-style: none;
+            padding: 0;
+        }
+        
+        #task4-categories li.item {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        #task4-categories li.item h2 {
+            color: #333;
+            margin-bottom: 10px;
+            border: none;
+            padding: 0;
+        }
+        
+        #task4-categories li.item ul {
+            margin-left: 20px;
+        }
+        
+        /* Task 5 Styles */
+        #task5-login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+        }
+        
+        #task5-login-form label {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        #task5-login-form input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        #task5-login-form button {
+            padding: 8px 15px;
+            background-color: #15ad7b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: fit-content;
+        }
+        
+        #task5-login-form button:hover {
+            background-color: #128a63;
+        }
+        
+        /* Task 6 Styles */
+        #task6-widget {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+        }
+        
+        #task6-change-color {
+            padding: 8px 15px;
+            background-color: #15ad7b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #task6-change-color:hover {
+            background-color: #128a63;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Практична робота №6 - Завдання</h1>
+        
+        <!-- Task 1 -->
+        <div class="task-section">
+            <h2>ЗАВДАННЯ 1</h2>
+            <p><strong>Текст завдання:</strong> У звітному HTML-документі створити html-розміту, яка складається з наступних елементів: текст, кнопка, поле введення. Натискання на кнопку "SHOW ME" має виводити значення з поля введення у консолі.</p>
+            
+            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <p>Введіть текст:</p>
+                <input type="text" id="task1-input-field" placeholder="Введіть значення">
+                <button id="task1-show-btn">SHOW ME</button>
+            </div>
+        </div>
+        
+        <!-- Task 2 -->
+        <div class="task-section">
+            <h2>ЗАВДАННЯ 2</h2>
+            <p><strong>Текст завдання:</strong> У звітному HTML-документі створити html-розміту, яка складається з наступних елементів: текст, кнопка, інпут (поле введення). Кнопка "Приховати" ховає текст, виводячи зірочки замість введеної інформації, замінює назву кнопки на "Розкрити", при повторному натисканні текст знову стає доступним і кнопка набуває початкового вигляду.</p>
+            
+            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <p>Введіть пароль:</p>
+                <input type="text" id="task2-password-input" placeholder="Введіть пароль">
+                <button id="task2-toggle-btn">Приховати</button>
+            </div>
+        </div>
+        
+        <!-- Task 3 -->
+        <div class="task-section">
+            <h2>ЗАВДАННЯ 3</h2>
+            <p><strong>Текст завдання:</strong> У звітному HTML-документі створити html-розміту, яка складається з наступних елементів: текст, з використанням селектора класу (class="taskTitle"), div, з використанням селектора ідентифікатора (id="place"). Додайте слухач кліку на window і визначте чи клікнув користувач у div з id="place". Примітка: Якщо користувач клікнув на зеленому прямокутнику – у консолі виведе true. У протилежному випадку - false.</p>
+            
+            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <p class="taskTitle">Клікніть будь-де на сторінці</p>
+                <div id="task3-place"></div>
+            </div>
+        </div>
+        
+        <!-- Task 4 -->
+        <div class="task-section">
+            <h2>ЗАВДАННЯ 4</h2>
+            <p><strong>Текст завдання:</strong> HTML містить список категорій ul#categories. Напиши скрипт, який: 1. Порахує і виведе в консоль кількість категорій в ul#categories, тобто елементів li.item. 2. Для кожного элемента li.item у списку ul#categories, знайде і виведе в консоль текст заголовку елемента (тегу &lt;h2&gt;) і кількість елементів в категорії (усіх &lt;li&gt;, вкладених в нього). Для виконання цього завдання потрібно використати метод forEach() і властивості навігації по DOM.</p>
+            
+            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <ul id="task4-categories">
+                    <li class="item">
+                        <h2>Animals</h2>
+                        <ul>
+                            <li>Cat</li>
+                            <li>Hamster</li>
+                            <li>Horse</li>
+                            <li>Parrot</li>
+                        </ul>
+                    </li>
+                    <li class="item">
+                        <h2>Products</h2>
+                        <ul>
+                            <li>Bread</li>
+                            <li>Prasley</li>
+                            <li>Cheese</li>
+                        </ul>
+                    </li>
+                    <li class="item">
+                        <h2>Technologies</h2>
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>React</li>
+                            <li>Node.js</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Task 5 -->
+        <div class="task-section">
+            <h2>ЗАВДАННЯ 5</h2>
+            <p><strong>Текст завдання:</strong> Напиши скрипт управління формою логіна. 1. Обробка відправлення форми form.login-form повинна відбуватися за подією submit. 2. Під час відправлення форми сторінка не повинна перезавантажуватися. 3. Якщо при сабміті у формі є незаповнені поля, виводь alert з попередженням про те, що 'All form fields must be filled in'. Не додавай на інпути атрибут required, валідація має відбуватися саме через JS. 4. Якщо користувач заповнив усі поля і відправив форму, збери значення полів в об'єкт з двома властивостями, де ключ — це ім'я інпутів, а значення — відповідні значення цих інпутів, очищені від пробілів по краях. Для доступу до елементів форми використовуй властивість elements. 5. При сабміті форми виведи об'єкт із введеними даними в консоль і очисти значення полів форми методом reset.</p>
+            
+            <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <form id="task5-login-form">
+                    <label>
+                        Email
+                        <input type="email" name="email" />
+                    </label>
+                    <label>
+                        Password
+                        <input type="password" name="password" />
+                    </label>
+                    <button type="submit">Log in</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Task 6 -->
+        <div class="task-section">
+            <h2>ЗАВДАННЯ 6</h2>
+            <p><strong>Текст завдання:</strong> Напиши скрипт, який змінює колір фону елемента &lt;body&gt; через інлайн-стиль по кліку на button.change-color і задає це значення кольору текстовим вмістом для span.color. Для генерування випадкового кольору використовуй функцію getRandomHexColor().</p>
+            
+            <div id="task6-widget">
+                <p style="margin: 0 0 10px 0;">Background color: <span id="task6-color-span">-</span></p>
+                <button type="button" id="task6-change-color">Change color</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load all task scripts -->
+    <script src="js/task1.js"></script>
+    <script src="js/task2.js"></script>
+    <script src="js/task3.js"></script>
+    <script src="js/task4.js"></script>
+    <script src="js/task5.js"></script>
+    <script src="js/task6.js"></script>
+</body>
+</html>
+

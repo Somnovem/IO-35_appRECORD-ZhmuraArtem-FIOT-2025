@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Делегування подій: Модальне вікно - Демонстрація</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .demo-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .demo-section p {
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .items-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .item-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            width: 220px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .item-title {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        
+        .item-description {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .item-price {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #15ad7b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Делегування подій: Модальне вікно</h1>
+        
+        <div class="demo-section">
+            <p>Демонстрація (клікніть на картку):</p>
+            
+            <div class="items-container">
+                <div class="item-card" 
+                     data-title="JavaScript: The Good Parts" 
+                     data-description="Легендарна книга про кращі практики JavaScript. Обов'язкова до прочитання кожному розробнику." 
+                     data-price="450 UAH">
+                    <h4 class="item-title">JS: The Good Parts</h4>
+                    <p class="item-description">Класична книга про JS.</p>
+                    <div class="item-price">450 UAH</div>
+                </div>
+
+                <div class="item-card" 
+                     data-title="Clean Code" 
+                     data-description="Керівництво з професійної розробки програмного забезпечення. Роберт Мартін." 
+                     data-price="600 UAH">
+                    <h4 class="item-title">Clean Code</h4>
+                    <p class="item-description">Мистецтво чистого коду.</p>
+                    <div class="item-price">600 UAH</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/delegate.js"></script>
+</body>
+</html>
+
